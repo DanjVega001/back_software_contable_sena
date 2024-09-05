@@ -27,7 +27,7 @@ class EmpresaTest extends TestCase
     public function test_create_company()
     {
         
-        $response = $this->postJson('/api/create-company', [
+        $response = $this->postJson('/api/company', [
             'datos_basicos' => [
                 'tipo_razon_social' => 'Empresa',
                 'tipo_identificacion' => 'NIT',

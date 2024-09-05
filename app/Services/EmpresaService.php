@@ -53,7 +53,7 @@ class EmpresaService
     {
         $serial = 0;
         while (true) {
-            $serial = random_int(8, 14);
+            $serial = random_int(0, 9999999999999);
             if ($this->repository->serialExists($serial)) continue;
             else break;
         }

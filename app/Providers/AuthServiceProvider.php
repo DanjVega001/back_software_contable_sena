@@ -36,9 +36,13 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Roles de la aplicación
      */
-    public const admin = 'admin';
-    public const instructor = 'instructor';
-    public const aprendiz = 'aprendiz';
+    public const admin = 'admin',
+    instructor = 'instructor',
+    aprendiz = 'aprendiz';
+
+    public const admin_id = 1,
+    instructor_id = 2,
+    aprendiz_id = 3;
 
     public static function getRole(User $user = null) : string
     {

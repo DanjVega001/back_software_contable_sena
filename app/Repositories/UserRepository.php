@@ -12,4 +12,11 @@ class UserRepository
     {
         return User::where('correo_electronico', $email)->first();
     }
+
+    public function createUser(array $data) : User
+    {
+        $user = new User($data);
+        $user->save();
+        return $user;
+    }
 }

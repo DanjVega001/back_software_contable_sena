@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\ActividadEconomicaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\RespFiscalController;
 use App\Http\Controllers\UserController;
-use App\Providers\AuthServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,16 +23,26 @@ Route::post('login', [AuthController::class, "login"]);
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::middleware(['role:admin|instructor'])->group(function () {
+    Route::middleware(['role:admin|instructor'])->group(function () {  
+        // Crea una nueva empresa
         Route::post("company", [EmpresaController::class, 'createCompany']);
-
+        // Crea un nuevo aprendiz
         Route::post('aprendiz', [UserController::class, 'createAprendiz']);
     
     });
     
     Route::middleware(['role:admin'])->group(function () {
+        // Crea un nuevo instructor
         Route::post('instructor', [UserController::class, 'createInstructor']);
-        Route::post('aprendiz', [UserController::class, 'createAprendiz']);
     });
+
+    // Trae al usuario autenticado
+    Route::get('user', function () { return auth()->user(); });
+    // Trae todas las ciudades
+    Route::get('cities', [CiudadController::class, "getCities"]);
+    // Trae las responsabilidades fiscales
+    Route::get('resp-fiscal', [RespFiscalController::class, "getRespFiscal"]);
+    // Trae todas las actividades económicas
+    Route::get('actividades-economicas', [ActividadEconomicaController::class, "getActividadesEconomicas"]);
 
 });

@@ -9,6 +9,8 @@ class ActividadEconomica extends Model
 {
     use HasFactory;
 
+    protected $table = 'actividades_economicas';
+
     protected $fillable = [
         'codigo_ciiu',
         'descripcion',

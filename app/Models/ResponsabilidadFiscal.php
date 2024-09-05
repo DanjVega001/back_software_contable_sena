@@ -9,6 +9,8 @@ class ResponsabilidadFiscal extends Model
 {
     use HasFactory;
 
+    protected $table ='responsabilidades_fiscales';
+
     protected $fillable = ['codigo', 'descripcion'];
 
     public function empresas()

@@ -43,6 +43,7 @@ class EmpresaTest extends TestCase
                 'correo_contacto' => 'admin@example.com',
                 'nombre_contacto' => 'Administrador',
                 'es_consorcio' => false,
+                'cobrador_id' => 6,
                 'pagina_web' => 'http://www.example.com',
                 'logo' => 'logo.png',
                 'user_id' => 7

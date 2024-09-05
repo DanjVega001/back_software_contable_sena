@@ -15,7 +15,8 @@ class Empresa extends Model
         'correo_contacto', 
         'nombre_contacto', 
         'pagina_web', 
-        'es_consorcio', 
+        'es_consorcio',
+        'cobrador_id', 
         'logo', 
         'user_id', 
         'datos_basicos_id'

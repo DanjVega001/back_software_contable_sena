@@ -21,8 +21,6 @@ class EmpresaController extends Controller
     public function createCompany(DatosBasicosRequest $datosBasicosReq, DatosEmpresaRequest $datosEmpresaReq,
         DatosTributariosRequest $datosTributariosReq, RepesentanteLegalRequest $representanteLegalReq)
     {
-
-
         $datosBasicos = $datosBasicosReq->validated();
         $datosEmpresa = $datosEmpresaReq->validated();
         $datosTributarios = $datosTributariosReq->validated();
@@ -35,4 +33,5 @@ class EmpresaController extends Controller
             'representante_legal' => $representanteLegal['representante_legal'],
         ]);
     }
+
 }

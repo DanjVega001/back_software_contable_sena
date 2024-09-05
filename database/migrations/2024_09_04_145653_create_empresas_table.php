@@ -20,6 +20,7 @@ class CreateEmpresasTable extends Migration
             $table->string("nombre_contacto");
             $table->string("pagina_web")->nullable();
             $table->boolean("es_consorcio")->nullable();
+            $table->unsignedInteger("cobrador_id");
             $table->string("logo")->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

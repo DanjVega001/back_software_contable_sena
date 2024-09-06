@@ -3,12 +3,14 @@
 namespace Tests\Unit;
 
 use App\Providers\AuthServiceProvider;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class EmpresaTest extends TestCase
 {
 
+    public static $serial;
 
     private function headers(): array
     {
@@ -19,15 +21,20 @@ class EmpresaTest extends TestCase
         ];
     }
 
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_create_company()
+    private function updateData(array $data): array
     {
-        
-        $response = $this->postJson('/api/company', [
+        $data['datos_basicos']['telefono'] = 200000;
+        $data['datos_basicos']['ciudad_codigo_dian'] = 5002;
+        $data['datos_basicos']['razon_social'] = "EMpresa test 2";
+        $data['datos_tributarios']['es_agente_retenedor'] = true;
+        $data['representante_legal']['nombres'] = 'Jhon Doe';
+        $data['datos_empresa']['correo_contacto'] = '|22112@example.com';
+        return $data;
+    }
+
+    private function getData(): array
+    {
+        return [
             'datos_basicos' => [
                 'tipo_razon_social' => 'Empresa',
                 'tipo_identificacion' => 'NIT',
@@ -46,7 +53,7 @@ class EmpresaTest extends TestCase
                 'cobrador_id' => 6,
                 'pagina_web' => 'http://www.example.com',
                 'logo' => 'logo.png',
-                'user_id' => 7
+                //'user_id' => 7 // Nullable (Si no se envia se intuye que el que crea la empresa es el que esta autenticado)
             ],
             'datos_tributarios' => [
                 'tarifa_ica' => 45,
@@ -66,9 +73,24 @@ class EmpresaTest extends TestCase
                 'numero_identificacion' => 123456789,
                 'tiene_socios' => true
             ]
-        ], $this->headers());
+        ];
+    }
 
-
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function test_create_company()
+    {
+        $response = $this->postJson('/api/company', $this->getData(), $this->headers());
+        EmpresaTest::$serial = $response->json('serial');
         $response->assertStatus(201);
+    }
+
+    public function test_update_company()
+    {
+        $response = $this->putJson('/api/update-company/' . EmpresaTest::$serial, $this->updateData($this->getData()), $this->headers());
+        $response->assertStatus(200);
     }
 }

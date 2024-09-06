@@ -9,6 +9,8 @@ class Empresa extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'serial';    
+
     protected $fillable = [
         'serial',
         'tipo_regimen_iva', 
@@ -35,5 +37,10 @@ class Empresa extends Model
     public function representanteLegal()
     {
         return $this->hasOne(RepresentanteLegal::class, 'empresa_serial', 'serial');
+    }
+
+    public function datosTributarios()
+    {
+        return $this->hasOne(DatoTributario::class, 'empresa_serial', 'serial');
     }
 }

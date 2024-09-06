@@ -2,19 +2,32 @@
 
 namespace App\Services;
 
+use App\Models\Empresa;
+use App\Repositories\DatosBasicosRepository;
+use App\Repositories\DatosTributariosRepository;
 use App\Repositories\EmpresaRepository;
+use App\Repositories\RepresentanteLegalRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class EmpresaService
 {
 
-    protected $repository;
+    protected $empresaRepository;
+    protected $datosBasicosRepository;
+    protected $repLegalRepository;
+    protected $datosTributariosRepository;
 
-    public function __construct(EmpresaRepository $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        EmpresaRepository $empresaRepository,
+        DatosBasicosRepository $datosBasicosRepository,
+        RepresentanteLegalRepository $repLegalRepository,
+        DatosTributariosRepository $datosTributariosRepository
+    ) {
+        $this->empresaRepository = $empresaRepository;
+        $this->datosBasicosRepository = $datosBasicosRepository;
+        $this->repLegalRepository = $repLegalRepository;
+        $this->datosTributariosRepository = $datosTributariosRepository;
     }
 
     public function createCompany(array $data)
@@ -22,22 +35,23 @@ class EmpresaService
         DB::beginTransaction();
 
         try {
-            $idDatosBasicos = $this->repository->saveBasicData($data['datos_basicos']);
+            $idDatosBasicos = $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
             $data['empresa']['datos_basicos_id'] = $idDatosBasicos;
             $data['empresa']['serial'] = $this->generateSerialCompany();
             $data['empresa']['user_id'] = $data['empresa']['user_id'] ?? Auth::id();
 
-            $serialEmpresa = $this->repository->saveCompany($data['empresa']);
+            $serialEmpresa = $this->empresaRepository->saveCompany($data['empresa']);
             $data['datos_tributarios']['empresa_serial'] = $serialEmpresa;
-            $this->repository->saveTributaryData($data['datos_tributarios']);
+            $this->datosTributariosRepository->saveTributaryData($data['datos_tributarios']);
 
             $data['representante_legal']['empresa_serial'] = $serialEmpresa;
-            $this->repository->saveLegalRepresentative($data['representante_legal']);
+            $this->repLegalRepository->saveLegalRepresentative($data['representante_legal']);
 
             DB::commit();
 
             return response()->json([
-               'message' => 'La empresa ha sido creada correctamente.'
+                'message' => 'La empresa ha sido creada correctamente.',
+                'serial' => $data['empresa']['serial']
             ], 201);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -49,12 +63,41 @@ class EmpresaService
         }
     }
 
+    public function updateCompany(int $serial, array $data)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            $empresa = Empresa::where('serial', $serial)->first();
+            $this->datosBasicosRepository->updateBasicData($empresa->datosBasicos, $data['datos_basicos']);
+            $this->empresaRepository->updateCompany($empresa, $data['empresa']);
+            $this->datosTributariosRepository->updateTributaryData($empresa->datosTributarios, $data['datos_tributarios']);
+            $this->repLegalRepository->updateLegalRepresentative($empresa->representanteLegal, $data['representante_legal']);
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'La empresa ha sido editada correctamente.',
+                'serial' => $empresa->serial
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th->getMessage());
+
+            response()->json([
+                'error' => 'Hubo un error al editar la empresa.'
+            ], 500);
+        }
+    }
+
+
     private function generateSerialCompany(): int
     {
         $serial = 0;
         while (true) {
             $serial = random_int(0, 9999999999999);
-            if ($this->repository->serialExists($serial)) continue;
+            if ($this->empresaRepository->serialExists($serial)) continue;
             else break;
         }
         return $serial;

@@ -9,6 +9,8 @@ class ResponsabilidadFiscal extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'codigo';    
+
     protected $table ='responsabilidades_fiscales';
 
     protected $fillable = ['codigo', 'descripcion'];

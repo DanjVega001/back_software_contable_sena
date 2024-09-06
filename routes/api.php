@@ -45,4 +45,8 @@ Route::middleware('auth:api')->group(function () {
     // Trae todas las actividades económicas
     Route::get('actividades-economicas', [ActividadEconomicaController::class, "getActividadesEconomicas"]);
 
+
+    Route::put('update-company/{serial}', [EmpresaController::class, "updateCompany"]);
+
+
 });

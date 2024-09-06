@@ -9,6 +9,6 @@ class ActividadEconomicaController extends Controller
 {
     public function getActividadesEconomicas()
     {
-        return ActividadEconomica::all();
+        return response()->json(ActividadEconomica::all());
     }
 }

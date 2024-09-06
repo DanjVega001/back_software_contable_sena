@@ -9,6 +9,6 @@ class RespFiscalController extends Controller
 {
     public function getRespFiscal()
     {
-        return ResponsabilidadFiscal::all();
+        return response()->json(ResponsabilidadFiscal::all());
     }
 }

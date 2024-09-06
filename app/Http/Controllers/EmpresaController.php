@@ -61,4 +61,29 @@ class EmpresaController extends Controller
         ]);
     }
 
+    public function getCompanies() 
+    {
+        return response()->json(Empresa::with('datosBasicos')
+            ->where('user_id', '=', Auth::id())->get());
+    }
+
+    public function getCompany(int $serial)
+    {
+        $exists = Empresa::where([
+            'user_id' => Auth::id(),
+           'serial' => $serial,
+        ])->exists();
+
+        if (!$exists) {
+            return response()->json(['error' => 'No se encontró la empresa'], 404);
+        }
+
+        return response()->json(Empresa::with(['datosBasicos', 'representanteLegal', 'datosTributarios',
+            'datosTributarios.responsabilidadesFiscales'])
+            ->where([
+                'user_id' => Auth::id(),
+               'serial' => $serial,
+            ])->firstOrFail());
+    }
+
 }

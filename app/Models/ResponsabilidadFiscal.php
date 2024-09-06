@@ -11,6 +11,10 @@ class ResponsabilidadFiscal extends Model
 
     protected $primaryKey = 'codigo';    
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $table ='responsabilidades_fiscales';
 
     protected $fillable = ['codigo', 'descripcion'];

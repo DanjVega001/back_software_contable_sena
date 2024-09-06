@@ -9,6 +9,6 @@ class CiudadController extends Controller
 {
     public function getCities()
     {
-        return Ciudad::all();
+        return response()->json(Ciudad::all());
     }
 }

@@ -18,4 +18,11 @@ class DatosTributariosRepository
         $tributaryData->update($data);
         $tributaryData->responsabilidadesFiscales()->sync($data['responsabilidades_fiscales']);
     }
+
+    public function deleteTributaryData(DatoTributario $tributaryData) : void
+    {
+        $tributaryData->responsabilidadesFiscales()->detach();
+        $tributaryData->delete();
+    }
+
 }

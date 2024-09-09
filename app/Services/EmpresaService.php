@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
+use App\Http\Requests\DatosEmpresaRequest;
 use App\Models\Empresa;
 use App\Repositories\DatosBasicosRepository;
 use App\Repositories\DatosTributariosRepository;
 use App\Repositories\EmpresaRepository;
 use App\Repositories\RepresentanteLegalRepository;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EmpresaService
 {
@@ -30,15 +33,18 @@ class EmpresaService
         $this->datosTributariosRepository = $datosTributariosRepository;
     }
 
-    public function createCompany(array $data)
+    public function createCompany(UploadedFile $reqFile, array $data)
     {
         DB::beginTransaction();
 
         try {
             $idDatosBasicos = $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
             $data['empresa']['datos_basicos_id'] = $idDatosBasicos;
-            $data['empresa']['serial'] = $this->generateSerialCompany();
+            $serial = $this->generateSerialCompany();
+            $data['empresa']['serial'] = $serial;
             $data['empresa']['user_id'] = $data['empresa']['user_id'] ?? Auth::id();
+            $logoRuta = $this->saveLogoToStorage($reqFile, $serial);
+            $data['empresa']['logo'] = $logoRuta;
 
             $serialEmpresa = $this->empresaRepository->saveCompany($data['empresa']);
             $data['datos_tributarios']['empresa_serial'] = $serialEmpresa;
@@ -63,13 +69,16 @@ class EmpresaService
         }
     }
 
-    public function updateCompany(int $serial, array $data)
+    public function updateCompany(UploadedFile $reqFile, int $serial, array $data)
     {
         DB::beginTransaction();
 
         try {
 
             $empresa = Empresa::where('serial', $serial)->first();
+
+            $data['empresa']['logo'] = $this->saveLogoToStorage($reqFile, $serial);
+            
             $this->datosBasicosRepository->updateBasicData($empresa->datosBasicos, $data['datos_basicos']);
             $this->empresaRepository->updateCompany($empresa, $data['empresa']);
             $this->datosTributariosRepository->updateTributaryData($empresa->datosTributarios, $data['datos_tributarios']);
@@ -91,6 +100,49 @@ class EmpresaService
         }
     }
 
+    public function deleteCompany(int $serial)
+    {
+        DB::beginTransaction();
+
+        try {
+            $empresa = Empresa::where('serial', $serial)->first();
+
+            $this->deleteLogoFromStorage($serial);
+
+            $this->repLegalRepository->deleteLegalRepresentative($empresa->representanteLegal);
+
+            $this->datosTributariosRepository->deleteTributaryData($empresa->datosTributarios);
+
+            $this->empresaRepository->deleteCompany($empresa);
+
+            $this->datosBasicosRepository->deleteBasicData($empresa->datosBasicos);
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'La empresa ha sido eliminada correctamente.',
+                'serial' => $serial
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th->getMessage());
+
+            response()->json([
+                'error' => 'Hubo un error al eliminar la empresa.'
+            ], 500);
+        }
+    }
+
+    private function saveLogoToStorage(UploadedFile $reqFile, int $serial): string
+    {
+        $path = 'public/logos/';
+        return $reqFile->storeAs($path, $serial);
+    }
+
+    private function deleteLogoFromStorage(string $serial) 
+    {
+        Storage::delete('public/logos/' . $serial);
+    }
 
     private function generateSerialCompany(): int
     {

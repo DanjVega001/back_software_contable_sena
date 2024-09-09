@@ -17,4 +17,9 @@ class RepresentanteLegalRepository
         $legalRepresentative->update($data);
     }
 
+    public function deleteLegalRepresentative(RepresentanteLegal $legalRepresentative) : void
+    {
+        $legalRepresentative->delete();
+    }
+
 }

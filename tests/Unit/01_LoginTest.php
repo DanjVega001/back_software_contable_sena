@@ -31,8 +31,6 @@ class LoginTest extends TestCase
             'contrasena' => '123456'
         ]);
 
-        
-
         LoginTest::$token = $response->json('access_token');
 
         $response->assertStatus(200);

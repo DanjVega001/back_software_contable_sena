@@ -2,9 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\Models\Empresa;
 use App\Providers\AuthServiceProvider;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class EmpresaTest extends TestCase
@@ -23,17 +27,22 @@ class EmpresaTest extends TestCase
 
     private function updateData(array $data): array
     {
+        Storage::fake('public');
+        $file = UploadedFile::fake()->image('certificado.jpg');
         $data['datos_basicos']['telefono'] = 200000;
         $data['datos_basicos']['ciudad_codigo_dian'] = 5002;
         $data['datos_basicos']['razon_social'] = "EMpresa test 2";
         $data['datos_tributarios']['es_agente_retenedor'] = true;
         $data['representante_legal']['nombres'] = 'Jhon Doe';
         $data['datos_empresa']['correo_contacto'] = '|22112@example.com';
+        $data['datos_empresa']['logo'] = $file;
         return $data;
     }
 
     private function getData(): array
     {
+        Storage::fake('public');
+        $file = UploadedFile::fake()->image('certificado.jpg');
         return [
             'datos_basicos' => [
                 'tipo_razon_social' => 'Empresa',
@@ -52,7 +61,8 @@ class EmpresaTest extends TestCase
                 'es_consorcio' => false,
                 'cobrador_id' => 6,
                 'pagina_web' => 'http://www.example.com',
-                'logo' => 'logo.png',
+                'logo' => $file,
+                //'logo' => 'logo.png',
                 //'user_id' => 7 // Nullable (Si no se envia se intuye que el que crea la empresa es el que esta autenticado)
             ],
             'datos_tributarios' => [
@@ -76,21 +86,37 @@ class EmpresaTest extends TestCase
         ];
     }
 
+    private function getRandomSerialCompany() : int
+    {
+        return DB::table('empresas')->inRandomOrder()->where('user_id', '=', 6)->first('serial')->serial;
+    }
+
     /**
      * A basic unit test example.
      *
      * @return void
      */
+    
+    
+
     public function test_create_company()
     {
         $response = $this->postJson('/api/company', $this->getData(), $this->headers());
-        EmpresaTest::$serial = $response->json('serial');
         $response->assertStatus(201);
     }
 
+    
     public function test_update_company()
     {
-        $response = $this->putJson('/api/update-company/' . EmpresaTest::$serial, $this->updateData($this->getData()), $this->headers());
+        $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
+
+    
+    public function test_delete_company()
+    {
+        $response = $this->deleteJson('/api/delete-company/' . $this->getRandomSerialCompany(), [], $this->headers());
+        $response->assertStatus(200);
+    }
+
 }

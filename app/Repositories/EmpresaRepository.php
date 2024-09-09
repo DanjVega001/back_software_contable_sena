@@ -23,4 +23,9 @@ class EmpresaRepository
     {
         return Empresa::where('serial', $serial)->exists();
     }
+
+    public function deleteCompany(Empresa $empresa) : void
+    {
+        $empresa->delete();
+    }
 }

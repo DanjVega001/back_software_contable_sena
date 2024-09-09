@@ -18,4 +18,9 @@ class DatosBasicosRepository
     {
         $basicData->update($data);
     }
+
+    public function deleteBasicData(DatoBasico $basicData) : void
+    {
+        $basicData->delete();
+    }
 }

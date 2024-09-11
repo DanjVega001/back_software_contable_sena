@@ -2,7 +2,8 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Faker\Factory as FakerFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Tests\TestCase;
 
 class CreateUserTest extends TestCase
@@ -25,12 +26,13 @@ class CreateUserTest extends TestCase
      */
     public function test_create_aprendiz()
     {
+        $faker = FakerFactory::create();
         $response = $this->postJson('/api/aprendiz', [
-            'nombres' => 'Jane',
-            'apellidos' => 'Doe',
-            'correo_electronico' => 'daniel.vega03@hotmail.com',
+            'nombres' => $faker->firstName(),
+            'apellidos' => $faker->lastName(),
+            'correo_electronico' => $faker->email(),
             'tipo_identificacion' => 'Pasaporte',
-            'numero_identificacion' => 2004313102,
+            'numero_identificacion' => $faker->numberBetween(7),
         ], $this->headers());
 
         $response->assertStatus(201);
@@ -38,12 +40,14 @@ class CreateUserTest extends TestCase
 
     public function test_create_instructor()
     {
+        $faker = FakerFactory::create();
+
         $response = $this->postJson('/api/instructor', [
-            'nombres' => 'Jhon',
-            'apellidos' => 'Doe',
-            'correo_electronico' => 'danjvega@soy.sena.edu.co',
-            'tipo_identificacion' => 'Cedula de Ciudadadnia',
-            'numero_identificacion' => 200423232,
+            'nombres' => $faker->firstName(),
+            'apellidos' => $faker->lastName(),
+            'correo_electronico' => $faker->email(),
+            'tipo_identificacion' => 'Pasaporte',
+            'numero_identificacion' => $faker->numberBetween(7),
         ], $this->headers());
 
         $response->assertStatus(201);

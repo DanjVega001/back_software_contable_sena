@@ -38,6 +38,9 @@ Route::middleware('auth:api')->group(function () {
     Route::middleware(['role:instructor'])->group(function () {
         // Crud de ficha
         Route::apiResource('ficha', FichaController::class);
+
+        // Cargar masiva de aprendices
+        Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
     });
 
     // Trae al usuario autenticado

@@ -1,6 +1,5 @@
 nombres,apellidos,tipo_identificacion,numero_identificacion,correo_electronico
-Juan Carlos,Pérez López,Cédula,123456789,juan.perez@example.com
-María Fernanda,Gómez Ramírez,Pasaporte,987654321,maria.gomez@example.com
-Luis Alberto,Sánchez Torres,Cédula,987654321,luis.sanchez@example.com
-Ana Patricia,Ruiz Fernández,Tarjeta Identidad,123987654,ana.ruiz@example.com
-Pedro Andrés,Morales Gutiérrez,Pasaporte,123098456,pedro.morales@example.com
+María Fernanda,Rodríguez Pérez,Cédula,987654321,maria.rodriguez@example.com
+Juan Carlos,Martínez Gómez,RUT,11223344,juan.martinez@example.com
+Ana Sofía,Lopez Torres,Pasaporte,567890123,ana.lopez@example.com
+Carlos Alberto,García Ramírez,Cédula,321654987,carlos.garcia@example.com

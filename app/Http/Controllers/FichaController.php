@@ -14,7 +14,7 @@ class FichaController extends Controller
 
     public function show($numero)
     {
-        $ficha = Ficha::where('numero', '=', $numero)->first();
+        $ficha = Ficha::with('users')->where('numero', '=', $numero)->first();
         if (!$ficha) {
             return response()->json(['error' => 'No se encontró la ficha'], 404);
         }

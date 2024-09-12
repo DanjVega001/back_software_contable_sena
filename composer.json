@@ -12,7 +12,7 @@
         "laravel/passport": "*",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "maatwebsite/excel": "^3.1"
+        "phpoffice/phpspreadsheet": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

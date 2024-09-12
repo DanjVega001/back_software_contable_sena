@@ -14,7 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->create();
         \App\Models\User::create([
             'nombres' => 'Administrador',
             'apellidos' => 'Sistema',
@@ -33,5 +32,6 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
+        \App\Models\User::factory(5)->create();
     }
 }

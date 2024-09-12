@@ -25,9 +25,5 @@ class UserController extends Controller
         return $this->service->createInstructor($dataCreateUser);
     }
 
-    public function createAprendiz(CreateUserRequest $request)
-    {
-        $dataCreateUser = $request->validated();
-        return $this->service->createAprendiz($dataCreateUser);
-    }
+
 }

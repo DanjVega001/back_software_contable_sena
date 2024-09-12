@@ -4,6 +4,7 @@ use App\Http\Controllers\ActividadEconomicaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\FichaController;
 use App\Http\Controllers\RespFiscalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,14 +27,17 @@ Route::middleware('auth:api')->group(function () {
     Route::middleware(['role:admin|instructor'])->group(function () {  
         // Crea una nueva empresa
         Route::post("company", [EmpresaController::class, 'createCompany']);
-        // Crea un nuevo aprendiz
-        Route::post('aprendiz', [UserController::class, 'createAprendiz']);
     
     });
     
     Route::middleware(['role:admin'])->group(function () {
         // Crea un nuevo instructor
         Route::post('instructor', [UserController::class, 'createInstructor']);
+    });
+
+    Route::middleware(['role:instructor'])->group(function () {
+        // Crud de ficha
+        Route::apiResource('ficha', FichaController::class);
     });
 
     // Trae al usuario autenticado

@@ -59,7 +59,7 @@ class EmpresaTest extends TestCase
                 'correo_contacto' => 'admin@example.com',
                 'nombre_contacto' => 'Administrador',
                 'es_consorcio' => false,
-                'cobrador_id' => 6,
+                'cobrador_id' => 1,
                 'pagina_web' => 'http://www.example.com',
                 'logo' => $file,
                 //'logo' => 'logo.png',
@@ -88,7 +88,7 @@ class EmpresaTest extends TestCase
 
     private function getRandomSerialCompany() : int
     {
-        return DB::table('empresas')->inRandomOrder()->where('user_id', '=', 6)->first('serial')->serial;
+        return DB::table('empresas')->inRandomOrder()->where('user_id', '=', 1)->first('serial')->serial;
     }
 
     /**

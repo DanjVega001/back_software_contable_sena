@@ -8,8 +8,11 @@ use App\Http\Requests\DatosTributariosRequest;
 use App\Http\Requests\RepesentanteLegalRequest;
 use App\Models\Empresa;
 use App\Services\EmpresaService;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class EmpresaController extends Controller
 {
@@ -85,5 +88,21 @@ class EmpresaController extends Controller
     public function deleteCompany(int $serial)
     {
         return $this->service->deleteCompany($serial);
+    }
+
+    public function cloneCompany(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'empresa_serial' => 'required|exists:empresas,serial|numeric',
+            'numero_ficha' => 'required|exists:fichas,numero|numeric',
+        ]);
+
+        if ($validated->fails()) {
+            return response()->json([
+                'errors' => $validated->errors()
+            ], 422);
+        }
+
+        return $this->service->cloneCompany($request->get('empresa_serial'), $request->get('numero_ficha'));
     }
 }

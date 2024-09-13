@@ -20,7 +20,7 @@ class OnlyMyCompany
     {
         $exists = Empresa::where([
             'user_id' => Auth::id(),
-            'serial' => $request->route("serial"),
+            'serial' => $request->route("serial") ?? request('empresa_serial'),
         ])->exists();
 
         if (!$exists) {

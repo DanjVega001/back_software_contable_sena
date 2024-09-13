@@ -30,16 +30,17 @@ class UserController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'csvFile' =>'required|file|mimes:csv,txt'
+            'csvFile' =>'required|file|mimes:csv,txt',
+            'numero_ficha' =>'required|numeric'
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+            return response()->json(['errors' => $validator->errors()], 422);
         }
 
         $file = $request->file('csvFile');
         
-        return $this->service->uploadAprendicesFromCSV($file);
+        return $this->service->uploadAprendicesFromCSV($file, $request->get('numero_ficha'));
     }
 
 

@@ -1,5 +1,50 @@
 nombres,apellidos,tipo_identificacion,numero_identificacion,correo_electronico
-María Fernanda,Rodríguez Pérez,Cédula,987654321,maria.rodriguez@example.com
-Juan Carlos,Martínez Gómez,RUT,11223344,juan.martinez@example.com
-Ana Sofía,Lopez Torres,Pasaporte,567890123,ana.lopez@example.com
-Carlos Alberto,García Ramírez,Cédula,321654987,carlos.garcia@example.com
+Juan,Gomez,CC,45231985,juan.gomez@example.com
+Ana,Martinez,TI,78342119,ana.martinez@mail.com
+Luis,Rodriguez,CC,21483957,luis.rodriguez@test.com
+Carlos,Sanchez,CE,89237491,carlos.sanchez@example.com
+Maria,Lopez,NIT,34789213,maria.lopez@test.com
+Pedro,Perez,CC,62389127,pedro.perez@mail.com
+Sofia,Ramirez,TI,34127849,sofia.ramirez@example.com
+Jose,Diaz,CE,98127345,jose.diaz@test.com
+Laura,Hernandez,CC,71583920,laura.hernandez@mail.com
+Pablo,Torres,NIT,18234789,pablo.torres@example.com
+Gabriel,Gomez,TI,87634529,gabriel.gomez@test.com
+Lucia,Perez,CC,91823476,lucia.perez@mail.com
+Diego,Lopez,CE,78391234,diego.lopez@example.com
+Camila,Martinez,NIT,23487129,camila.martinez@mail.com
+Andres,Rodriguez,TI,23891234,andres.rodriguez@test.com
+Felipe,Sanchez,CC,45781239,felipe.sanchez@example.com
+Valentina,Hernandez,CE,87912345,valentina.hernandez@test.com
+Mateo,Diaz,NIT,76128349,mateo.diaz@mail.com
+Isabella,Ramirez,TI,23984712,isabella.ramirez@example.com
+Juan,Perez,CC,29384712,juan.perez@test.com
+Sofia,Gomez,NIT,74823912,sofia.gomez@example.com
+Jose,Martinez,CE,12938475,jose.martinez@mail.com
+Ana,Rodriguez,TI,23194875,ana.rodriguez@example.com
+Pedro,Sanchez,CC,48123975,pedro.sanchez@test.com
+Maria,Lopez,NIT,34981234,maria.lopez@mail.com
+Gabriel,Diaz,CE,23948175,gabriel.diaz@example.com
+Laura,Ramirez,CC,78123456,laura.ramirez@test.com
+Carlos,Hernandez,NIT,12938465,carlos.hernandez@mail.com
+Camila,Torres,TI,34781234,camila.torres@example.com
+Diego,Gomez,CC,48127349,diego.gomez@mail.com
+Lucia,Perez,NIT,98237465,lucia.perez@test.com
+Mateo,Rodriguez,TI,29384712,mateo.rodriguez@mail.com
+Pablo,Sanchez,CE,39287123,pablo.sanchez@test.com
+Valentina,Lopez,NIT,39487123,valentina.lopez@example.com
+Felipe,Martinez,CC,78123457,felipe.martinez@test.com
+Andres,Hernandez,TI,78123947,andres.hernandez@mail.com
+Ana,Perez,NIT,34981238,ana.perez@test.com
+Luis,Gomez,CE,23984718,luis.gomez@mail.com
+Maria,Diaz,CC,48127391,maria.diaz@example.com
+Juan,Ramirez,NIT,13948712,juan.ramirez@test.com
+Sofia,Sanchez,TI,23987124,sofia.sanchez@example.com
+Pedro,Lopez,CC,48234719,pedro.lopez@mail.com
+Gabriel,Torres,CE,29348721,gabriel.torres@example.com
+Isabella,Martinez,NIT,23198471,isabella.martinez@mail.com
+Laura,Rodriguez,TI,29384718,laura.rodriguez@example.com
+Jose,Hernandez,CC,84912734,jose.hernandez@example.com
+Camila,Perez,NIT,23948715,camila.perez@mail.com
+Diego,Sanchez,TI,39487123,diego.sanchez@test.com
+Felipe,Ramirez,CC,48123947,felipe.ramirez@mail.com

@@ -27,7 +27,7 @@ class LoginTest extends TestCase
         ]);*/
 
         $response = $this->postJson('/api/login', [
-            'correo_electronico' => 'admin@example.com',
+            'correo_electronico' => 'instructor@example.com',
             'contrasena' => '123456'
         ]);
 

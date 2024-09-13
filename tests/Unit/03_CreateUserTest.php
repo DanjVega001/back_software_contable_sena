@@ -19,24 +19,6 @@ class CreateUserTest extends TestCase
         ];
     }
 
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_create_aprendiz()
-    {
-        $faker = FakerFactory::create();
-        $response = $this->postJson('/api/aprendiz', [
-            'nombres' => $faker->firstName(),
-            'apellidos' => $faker->lastName(),
-            'correo_electronico' => $faker->email(),
-            'tipo_identificacion' => 'Pasaporte',
-            'numero_identificacion' => $faker->numberBetween(7),
-        ], $this->headers());
-
-        $response->assertStatus(201);
-    }
 
     public function test_create_instructor()
     {

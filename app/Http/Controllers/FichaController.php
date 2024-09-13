@@ -36,7 +36,7 @@ class FichaController extends Controller
         $dataFicha = $request->validated();
         $ficha = Ficha::where('numero', '=', $numero)->first();
         if (!$ficha) {
-            return response()->json(['error' => 'No se encontró la ficha'], 404);
+            return response()->json(['errors' => 'No se encontró la ficha'], 404);
         }
         $ficha->update($dataFicha);
         return response()->json([
@@ -48,7 +48,7 @@ class FichaController extends Controller
     {
         $ficha = Ficha::where('numero', '=', $numero)->first();
         if (!$ficha) {
-            return response()->json(['error' => 'No se encontró la ficha'], 404);
+            return response()->json(['errors' => 'No se encontró la ficha'], 404);
         }
         $ficha->users()->detach();
         $ficha->delete();

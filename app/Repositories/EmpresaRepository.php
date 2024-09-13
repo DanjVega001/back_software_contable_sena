@@ -28,4 +28,9 @@ class EmpresaRepository
     {
         $empresa->delete();
     }
+
+    public function getCompanyBySerial(int $serial) : Empresa
+    {
+        return Empresa::with(['datosBasicos', 'representanteLegal', 'datosTributarios', 'datosTributarios.responsabilidadesFiscales'])->where('serial', $serial)->first();
+    }
 }

@@ -7,7 +7,10 @@ use App\Models\Empresa;
 use App\Repositories\DatosBasicosRepository;
 use App\Repositories\DatosTributariosRepository;
 use App\Repositories\EmpresaRepository;
+use App\Repositories\FichaRepository;
 use App\Repositories\RepresentanteLegalRepository;
+use Exception;
+use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,17 +23,20 @@ class EmpresaService
     protected $datosBasicosRepository;
     protected $repLegalRepository;
     protected $datosTributariosRepository;
+    protected $fichaRepository;
 
     public function __construct(
         EmpresaRepository $empresaRepository,
         DatosBasicosRepository $datosBasicosRepository,
         RepresentanteLegalRepository $repLegalRepository,
-        DatosTributariosRepository $datosTributariosRepository
+        DatosTributariosRepository $datosTributariosRepository,
+        FichaRepository $fichaRepository
     ) {
         $this->empresaRepository = $empresaRepository;
         $this->datosBasicosRepository = $datosBasicosRepository;
         $this->repLegalRepository = $repLegalRepository;
         $this->datosTributariosRepository = $datosTributariosRepository;
+        $this->fichaRepository = $fichaRepository;
     }
 
     public function createCompany(UploadedFile $reqFile, array $data)
@@ -39,17 +45,17 @@ class EmpresaService
 
         try {
             $idDatosBasicos = $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
+            
             $data['empresa']['datos_basicos_id'] = $idDatosBasicos;
             $serial = $this->generateSerialCompany();
             $data['empresa']['serial'] = $serial;
             $data['empresa']['user_id'] = $data['empresa']['user_id'] ?? Auth::id();
             $logoRuta = $this->saveLogoToStorage($reqFile, $serial);
             $data['empresa']['logo'] = $logoRuta;
-
+            
             $serialEmpresa = $this->empresaRepository->saveCompany($data['empresa']);
             $data['datos_tributarios']['empresa_serial'] = $serialEmpresa;
             $this->datosTributariosRepository->saveTributaryData($data['datos_tributarios']);
-
             $data['representante_legal']['empresa_serial'] = $serialEmpresa;
             $this->repLegalRepository->saveLegalRepresentative($data['representante_legal']);
 
@@ -61,10 +67,10 @@ class EmpresaService
             ], 201);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
+            dd($th);
 
             response()->json([
-                'error' => 'Hubo un error al crear la empresa.'
+                'errors' => 'Hubo un error al crear la empresa.',
             ], 500);
         }
     }
@@ -78,7 +84,7 @@ class EmpresaService
             $empresa = Empresa::where('serial', $serial)->first();
 
             $data['empresa']['logo'] = $this->saveLogoToStorage($reqFile, $serial);
-            
+
             $this->datosBasicosRepository->updateBasicData($empresa->datosBasicos, $data['datos_basicos']);
             $this->empresaRepository->updateCompany($empresa, $data['empresa']);
             $this->datosTributariosRepository->updateTributaryData($empresa->datosTributarios, $data['datos_tributarios']);
@@ -95,7 +101,7 @@ class EmpresaService
             dd($th->getMessage());
 
             response()->json([
-                'error' => 'Hubo un error al editar la empresa.'
+                'errors' => 'Hubo un error al editar la empresa.'
             ], 500);
         }
     }
@@ -109,9 +115,9 @@ class EmpresaService
 
             if (!$this->deleteLogoFromStorage($serial)) {
                 response()->json([
-                    'error' => 'Hubo un error al eliminar la empresa.'
+                    'errors' => 'Hubo un error al eliminar la empresa.'
                 ], 500);
-            } 
+            }
 
             $this->repLegalRepository->deleteLegalRepresentative($empresa->representanteLegal);
 
@@ -129,12 +135,78 @@ class EmpresaService
             ], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
 
-            response()->json([
-                'error' => 'Hubo un error al eliminar la empresa.'
+            return response()->json([
+                'errors' => 'Hubo un error al eliminar la empresa.'
             ], 500);
         }
+    }
+
+    public function cloneCompany(int $serialEmpresa, int $numeroFicha)
+    {
+
+        DB::beginTransaction();
+        try {
+
+            $empresa = $this->empresaRepository->getCompanyBySerial($serialEmpresa);
+            $ficha = $this->fichaRepository->getFichaByNumero($numeroFicha);
+            
+            $logo = $this->parseLogoToUploadedFile($empresa->serial, $empresa->logo);
+            
+            $users = $ficha->users;
+
+            if (count($users) == 0) {
+                return response()->json([
+                    "errors" => "Ficha no tiene aprendices."
+                ], 404);
+            }
+
+            foreach ($users as $user) {
+
+                $data = [
+                    'datos_basicos' => $empresa->datosBasicos->toArray(),
+                    'empresa' => $empresa->toArray(),
+                    'datos_tributarios' => $empresa->datosTributarios->toArray(),
+                    'representante_legal' => $empresa->representanteLegal->toArray(),
+                ];
+
+                $data['datos_tributarios']['responsabilidades_fiscales'] = 
+                    array_map(function ($val) {
+                        return $val['responsabilidad_fiscal_id'] = $val['codigo'];
+                    }, $empresa->datosTributarios->responsabilidadesFiscales->toArray());
+                
+                $data['empresa']['user_id'] = $user->id;
+
+                $this->createCompany($logo, $data);
+            }
+
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Empresas clonadas correctamente.',
+            ], 201);
+        } catch (NotFound $e) {
+            DB::rollBack();
+            return response()->json([
+                'errors' => $e->getMessage(),
+            ], 404);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'errors' => $e->getMessage(),
+            ], 500);
+        } 
+    }
+    
+    private function parseLogoToUploadedFile(int $serial, string $logo) : UploadedFile
+    {
+        $pathFile = storage_path('app/public'.str_replace('storage/', '', $logo));
+        $uploadFile = new UploadedFile(
+            $pathFile,
+            $serial
+        );
+        return $uploadFile;
     }
 
     private function saveLogoToStorage(UploadedFile $reqFile, int $serial): string
@@ -144,7 +216,7 @@ class EmpresaService
         return Storage::url($ruta);
     }
 
-    private function deleteLogoFromStorage(string $serial) : bool
+    private function deleteLogoFromStorage(string $serial): bool
     {
         return Storage::delete('public/logos/' . $serial);
     }

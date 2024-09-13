@@ -33,7 +33,7 @@ class UserService
         $user = $this->repository->createUser($data);
         if (!isset($user)) {
             return response()->json([
-                'message' => 'Hubo un error al crear el instructor.'
+                'errors' => 'Hubo un error al crear el instructor.'
             ], 500);
         }
         

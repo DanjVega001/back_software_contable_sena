@@ -24,7 +24,7 @@ class AuthService
 
         if (!$user || !Hash::check($data['contrasena'], $user->contrasena)) {
             return response()->json([
-                "message" => "Credenciales incorrectas"
+                "errors" => "Credenciales incorrectas"
             ], 401);
         }
 

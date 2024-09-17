@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Providers\AuthServiceProvider;
+use App\Rules\UniqueUserEmail;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateUserRequest extends FormRequest
@@ -25,12 +26,14 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = request()->route('instructor_id') ?? request()->route('aprendiz_id');
         return [
             'nombres' => 'required|string',
             'apellidos' => 'required|string',
-            'correo_electronico' => 'required|email|unique:users',
+            'correo_electronico' => ['required','string','email', $id == null ? 'unique:users' : new UniqueUserEmail($id)],
             'tipo_identificacion' => 'required|string',
             'numero_identificacion' => 'required|numeric',
+            'contrasena' => 'string'
         ];
     }
 }

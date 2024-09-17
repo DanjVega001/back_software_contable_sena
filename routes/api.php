@@ -24,27 +24,43 @@ Route::post('login', [AuthController::class, "login"]);
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::middleware(['role:admin|instructor'])->group(function () {  
+    Route::middleware(['role:admin|instructor'])->group(function () {
         // Crea una nueva empresa
         Route::post("company", [EmpresaController::class, 'createCompany']);
-    
+
+        // Crud de ficha
+        Route::apiResource('ficha', FichaController::class);
+
+        // Trae un aprendiz
+        Route::get('aprendiz/{aprendiz_id}', [UserController::class, 'getAprendiz']);
+        // Actualiza un aprendiz
+        Route::put('update-aprendiz/{aprendiz_id}', [UserController::class, "updateAprendiz"]);
+        // Elimina un aprendiz
+        Route::delete('delete-aprendiz/{aprendiz_id}', [UserController::class, "deleteAprendiz"]);
     });
-    
+
     Route::middleware(['role:admin'])->group(function () {
         // Crea un nuevo instructor
         Route::post('instructor', [UserController::class, 'createInstructor']);
+        // Trae todos los instructores
+        Route::get('instructores', [UserController::class, 'getInstructores']);
+        // Trae un instructor
+        Route::get('instructor/{instructor_id}', [UserController::class, 'getInstructor']);
+        // Actualiza un instructor
+        Route::put('update-instructor/{instructor_id}', [UserController::class, "updateInstructor"]);
+        // Elimina un instructor
+        Route::delete('delete-instructor/{instructor_id}', [UserController::class, "deleteInstructor"]);
     });
 
     Route::middleware(['role:instructor'])->group(function () {
-        // Crud de ficha
-        Route::apiResource('ficha', FichaController::class);
         // Cargar masiva de aprendices
         Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
-        
     });
 
     // Trae al usuario autenticado
-    Route::get('user', function () { return auth()->user(); });
+    Route::get('user', function () {
+        return auth()->user();
+    });
     // Trae todas las ciudades
     Route::get('cities', [CiudadController::class, "getCities"]);
     // Trae las responsabilidades fiscales
@@ -59,18 +75,14 @@ Route::middleware('auth:api')->group(function () {
 
         // Actualiza una empresa
         Route::put('update-company/{serial}', [EmpresaController::class, "updateCompany"]);
-    
+
         // Trae todos los datos de una empresa segun el serial
         Route::get('company/{serial}', [EmpresaController::class, "getCompany"]);
-    
+
         // Elimina una empresa
         Route::delete('delete-company/{serial}', [EmpresaController::class, "deleteCompany"]);
 
         // Clonar la empresa en los aprendices
         Route::post('clone-company', [EmpresaController::class, 'cloneCompany']);
     });
-
-
-    
-
 });

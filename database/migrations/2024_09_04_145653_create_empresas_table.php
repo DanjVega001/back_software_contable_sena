@@ -23,9 +23,7 @@ class CreateEmpresasTable extends Migration
             $table->unsignedInteger("cobrador_id");
             $table->string("logo")->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('datos_basicos_id');
-            $table->foreign('datos_basicos_id')->references('id')->on('datos_basicos');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

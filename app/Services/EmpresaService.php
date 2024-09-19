@@ -44,9 +44,7 @@ class EmpresaService
         DB::beginTransaction();
 
         try {
-            $idDatosBasicos = $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
             
-            $data['empresa']['datos_basicos_id'] = $idDatosBasicos;
             $serial = $this->generateSerialCompany();
             $data['empresa']['serial'] = $serial;
             $data['empresa']['user_id'] = $data['empresa']['user_id'] ?? Auth::id();
@@ -54,6 +52,8 @@ class EmpresaService
             $data['empresa']['logo'] = $logoRuta;
             
             $serialEmpresa = $this->empresaRepository->saveCompany($data['empresa']);
+            $data['datos_basicos']['empresa_serial'] = $serialEmpresa;
+            $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
             $data['datos_tributarios']['empresa_serial'] = $serialEmpresa;
             $this->datosTributariosRepository->saveTributaryData($data['datos_tributarios']);
             $data['representante_legal']['empresa_serial'] = $serialEmpresa;

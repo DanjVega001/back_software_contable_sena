@@ -22,6 +22,7 @@ class DatoBasico extends Model
         'direccion',
         'telefono',
         'ciudad_codigo_dian',
+        'empresa_serial'
     ];
 
     public function ciudad()
@@ -31,6 +32,6 @@ class DatoBasico extends Model
 
     public function empresa()
     {
-        return $this->hasOne(Empresa::class, 'datos_basicos_id');
+        return $this->belongsTo(Empresa::class, 'empresa_serial', 'serial');
     }
 }

@@ -16,7 +16,7 @@ class CreateDatoTributarioRespFiscal extends Migration
         Schema::create('dato_tributario_resp_fiscal', function (Blueprint $table) {
             $table->unsignedBigInteger("dato_tributario_id");
             $table->string("responsabilidad_fiscal_id");
-            $table->foreign("dato_tributario_id")->references("id")->on("datos_tributarios");
+            $table->foreign("dato_tributario_id")->references("id")->on("datos_tributarios")->cascadeOnDelete();
             $table->foreign("responsabilidad_fiscal_id")->references("codigo")->on("responsabilidades_fiscales");
             $table->timestamps();
         });

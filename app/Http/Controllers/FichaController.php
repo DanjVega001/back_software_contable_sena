@@ -50,7 +50,6 @@ class FichaController extends Controller
         if (!$ficha) {
             return response()->json(['errors' => 'No se encontró la ficha'], 404);
         }
-        $ficha->users()->detach();
         $ficha->delete();
         return response()->json([
            'message' => 'Ficha eliminada correctamente.'

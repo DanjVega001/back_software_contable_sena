@@ -21,8 +21,15 @@ class Empresa extends Model
         'cobrador_id', 
         'logo', 
         'user_id', 
-        'datos_basicos_id'
     ];
+
+    /*
+    protected static function booted()
+    {
+        static::deleted(function ($empresa) {
+            $empresa->datosBasicos()->delete();
+        });
+    }*/
 
     public function user()
     {
@@ -31,7 +38,7 @@ class Empresa extends Model
 
     public function datosBasicos()
     {
-        return $this->belongsTo(DatoBasico::class, 'datos_basicos_id');
+        return $this->hasOne(DatoBasico::class, 'empresa_serial', 'serial');
     }
 
     public function representanteLegal()

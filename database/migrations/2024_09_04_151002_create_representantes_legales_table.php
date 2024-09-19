@@ -21,7 +21,7 @@ class CreateRepresentantesLegalesTable extends Migration
             $table->unsignedBigInteger('numero_identificacion');
             $table->boolean('tiene_socios');
             $table->unsignedBigInteger('empresa_serial');
-            $table->foreign('empresa_serial')->references('serial')->on('empresas');
+            $table->foreign('empresa_serial')->references('serial')->on('empresas')->cascadeOnDelete();
             $table->timestamps();
         });
     }

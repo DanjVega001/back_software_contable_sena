@@ -26,6 +26,8 @@ class CreateDatosBasicosTable extends Migration
             $table->unsignedBigInteger('telefono')->nullable();
             $table->unsignedInteger('ciudad_codigo_dian');
             $table->foreign('ciudad_codigo_dian')->references('codigo_dian')->on('ciudades');
+            $table->unsignedBigInteger('empresa_serial')->nullable();
+            $table->foreign('empresa_serial')->references('serial')->on('empresas')->cascadeOnDelete();
             $table->timestamps();
         });
     }

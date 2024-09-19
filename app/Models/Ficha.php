@@ -18,6 +18,13 @@ class Ficha extends Model
         'creado_por'
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function ($ficha) {
+            $ficha->users()->delete();
+        });
+    }
+
     public function creadoPor()
     {
         return $this->belongsToMany(User::class)->wherePivot('rol', '=', 'instructor');

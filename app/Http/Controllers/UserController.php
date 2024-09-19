@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
-    use RefreshDatabase;
-
     protected $service;
+    protected $empresaRepository;
 
     public function __construct(UserService $service)
     {
@@ -97,9 +96,6 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['errors' => 'Aprendiz no econtrado']);
         }
-        if ($user->empresas()->count() > 0) {
-            return response()->json(['errors' => 'Aprendiz tiene empesas asociadas.'], 500);
-        }
         $user->delete();
         return response()->json([
            'message' => 'El aprendiz ha sido eliminado correctamente.'
@@ -111,9 +107,6 @@ class UserController extends Controller
         $user = $this->validateInstructor($instructor_id);
         if (!$user) {
             return response()->json(['errors' => 'Instructor no econtrado']);
-        }
-        if ($user->empresas()->count() > 0) {
-            return response()->json(['errors' => 'Instructor tiene empesas asociadas.'], 500);
         }
         $user->delete();
         return response()->json([

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FichaRequest;
 use App\Models\Ficha;
+use Illuminate\Support\Facades\Auth;
 
 class FichaController extends Controller
 {
     public function index()
     {
-        return response()->json(Ficha::all());
+        return response()->json(Auth::user()->fichasCreadas);
     }
 
     public function show($numero)
@@ -26,6 +27,7 @@ class FichaController extends Controller
         $dataFicha = $request->validated();
         $ficha = new Ficha($dataFicha);
         $ficha->save();
+        $ficha->creadoPor()->attach(Auth::id(), ['rol' => 'instructor']);
         return response()->json([
             'message' => 'Ficha creada correctamente.'
         ], 201);

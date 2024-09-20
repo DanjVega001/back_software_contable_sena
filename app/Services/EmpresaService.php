@@ -170,6 +170,8 @@ class EmpresaService
                     'representante_legal' => $empresa->representanteLegal->toArray(),
                 ];
 
+                $data['empresa']['cobrador_id'] = $user->id;
+
                 $data['datos_tributarios']['responsabilidades_fiscales'] = 
                     array_map(function ($val) {
                         return $val['responsabilidad_fiscal_id'] = $val['codigo'];

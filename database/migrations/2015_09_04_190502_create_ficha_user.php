@@ -16,7 +16,7 @@ class CreateFichaUser extends Migration
         Schema::create('ficha_user', function (Blueprint $table) {
             $table->unsignedBigInteger('ficha_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('ficha_id')->references('id')->on('fichas');
+            $table->foreign('ficha_id')->references('id')->on('fichas')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->enum('rol', ['instructor', 'aprendiz']);
             $table->timestamps();

@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, "login"]);
 
+// Trae todas las ciudades
+Route::get('cities', [CiudadController::class, "getCities"]);
+
 Route::middleware('auth:api')->group(function () {
 
     Route::middleware(['role:admin|instructor'])->group(function () {
@@ -61,8 +64,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('user', function () {
         return auth()->user();
     });
-    // Trae todas las ciudades
-    Route::get('cities', [CiudadController::class, "getCities"]);
+
     // Trae las responsabilidades fiscales
     Route::get('resp-fiscal', [RespFiscalController::class, "getRespFiscal"]);
     // Trae todas las actividades económicas

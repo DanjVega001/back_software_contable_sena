@@ -88,7 +88,7 @@ class EmpresaTest extends TestCase
 
     private function getRandomSerialCompany() : int
     {
-        return DB::table('empresas')->inRandomOrder()->where('user_id', '=', 1)->first('serial')->serial;
+        return DB::table('empresas')->inRandomOrder()->where('user_id', '=', 2)->first('serial')->serial;
     }
 
     /**
@@ -106,13 +106,14 @@ class EmpresaTest extends TestCase
     }
 
     
-    /*
+    
     public function test_update_company()
     {
         $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
 
+    /*
     public function test_delete_company()
     {
         $response = $this->deleteJson('/api/delete-company/' . $this->getRandomSerialCompany(), [], $this->headers());

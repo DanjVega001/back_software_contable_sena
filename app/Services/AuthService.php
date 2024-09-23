@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Providers\AuthServiceProvider;
 use App\Repositories\UserRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 
 class AuthService
 {
@@ -36,5 +38,12 @@ class AuthService
             "access_token" => $token->accessToken,
             "token_type" => "Bearer",
         ]);
+    }
+
+    public function logout() : JsonResponse
+    {
+        $user = Auth::user()->token();
+        $user->revoke();
+        return response()->json(["message" => "Sesión finalizada"]);
     }
 }

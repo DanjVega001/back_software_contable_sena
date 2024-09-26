@@ -47,7 +47,6 @@ class AuthServiceProvider extends ServiceProvider
     public static function getRole(User $user = null) : string
     {
         return self::getUserModel($user ?? auth()->user())->role->nombre;
-        
     }
 
     public static function getUserModel(Authenticatable $authUser) : User

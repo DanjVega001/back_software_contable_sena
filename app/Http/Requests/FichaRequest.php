@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Providers\AuthServiceProvider;
+use App\Rules\UniqueNumberFicha;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FichaRequest extends FormRequest
@@ -14,8 +15,8 @@ class FichaRequest extends FormRequest
      */
     public function authorize()
     {
-        $role = AuthServiceProvider::getRole();   
-        return $role === AuthServiceProvider::instructor;
+        $role = AuthServiceProvider::getRole();
+        return $role === AuthServiceProvider::instructor || $role === AuthServiceProvider::admin;
     }
 
     /**
@@ -25,9 +26,10 @@ class FichaRequest extends FormRequest
      */
     public function rules()
     {
+        $number = request("numero");
         return [
-            'codigo' => 'required|integer',
-            'numero' => 'required|integer|unique:fichas',
+            'codigo' => 'required|numeric|integer|digits_between:4,10',
+            'numero' => ['required','numeric','integer','digits_between:4,10',new UniqueNumberFicha()],
             'programa' => 'required|string',
         ];
     }

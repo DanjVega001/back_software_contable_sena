@@ -15,7 +15,10 @@ class FichaController extends Controller
 
     public function show($numero)
     {
-        $ficha = Ficha::with('users')->where('numero', '=', $numero)->first();
+        $ficha = Ficha::with('users')->where('numero', '=', $numero)
+            ->whereHas('creadoPor', function ($query) {
+                $query->where('id', '=', Auth::id());
+            })->first()->users;
         if (!$ficha) {
             return response()->json(['error' => 'No se encontró la ficha'], 404);
         }
@@ -29,26 +32,34 @@ class FichaController extends Controller
         $ficha->save();
         $ficha->creadoPor()->attach(Auth::id(), ['rol' => 'instructor']);
         return response()->json([
-            'message' => 'Ficha creada correctamente.'
+            'message' => 'Ficha creada correctamente.',
+            'ficha' => $ficha,
         ], 201);
     }
 
     public function update(FichaRequest $request, $numero)
     {
         $dataFicha = $request->validated();
-        $ficha = Ficha::where('numero', '=', $numero)->first();
+        $ficha = Ficha::where('numero', '=', $numero)
+            ->whereHas('creadoPor', function ($query) {
+                $query->where('id', '=', Auth::id());
+            })->first();
         if (!$ficha) {
             return response()->json(['errors' => 'No se encontró la ficha'], 404);
         }
         $ficha->update($dataFicha);
         return response()->json([
-            'message' => 'Ficha actualizada correctamente.'
+            'message' => 'Ficha actualizada correctamente.',
+            'ficha' => $ficha,
         ], 200);
     }
 
     public function destroy($numero)
     {
-        $ficha = Ficha::where('numero', '=', $numero)->first();
+        $ficha = Ficha::where('numero', '=', $numero)
+            ->whereHas('creadoPor', function ($query) {
+                $query->where('id', '=', Auth::id());
+            })->first();
         if (!$ficha) {
             return response()->json(['errors' => 'No se encontró la ficha'], 404);
         }

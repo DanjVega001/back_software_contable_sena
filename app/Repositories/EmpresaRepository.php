@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Empresa;
 
-class EmpresaRepository 
+class EmpresaRepository
 {
 
     public function saveCompany(array $data) : int
@@ -15,10 +15,10 @@ class EmpresaRepository
     }
 
     public function updateCompany(Empresa $empresa, array $data) : void
-    { 
+    {
         $empresa->update($data);
     }
-    
+
     public function serialExists(int $serial) : bool
     {
         return Empresa::where('serial', $serial)->exists();
@@ -31,6 +31,7 @@ class EmpresaRepository
 
     public function getCompanyBySerial(int $serial) : Empresa
     {
-        return Empresa::with(['datosBasicos', 'representanteLegal', 'datosTributarios', 'datosTributarios.responsabilidadesFiscales'])->where('serial', $serial)->first();
+        return Empresa::with(['datosBasicos', 'representanteLegal', 'datosTributarios', 'datosTributarios.responsabilidadesFiscales'])
+            ->where('serial', $serial)->first();
     }
 }

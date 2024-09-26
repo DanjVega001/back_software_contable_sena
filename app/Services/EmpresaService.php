@@ -44,13 +44,13 @@ class EmpresaService
         DB::beginTransaction();
 
         try {
-            
+
             $serial = $this->generateSerialCompany();
             $data['empresa']['serial'] = $serial;
             $data['empresa']['user_id'] = $data['empresa']['user_id'] ?? Auth::id();
             $logoRuta = $this->saveLogoToStorage($reqFile, $serial);
             $data['empresa']['logo'] = $logoRuta;
-            
+
             $serialEmpresa = $this->empresaRepository->saveCompany($data['empresa']);
             $data['datos_basicos']['empresa_serial'] = $serialEmpresa;
             $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
@@ -150,9 +150,9 @@ class EmpresaService
 
             $empresa = $this->empresaRepository->getCompanyBySerial($serialEmpresa);
             $ficha = $this->fichaRepository->getFichaByNumero($numeroFicha);
-            
+
             $logo = $this->parseLogoToUploadedFile($empresa->serial, $empresa->logo);
-            
+
             $users = $ficha->users;
 
             if (count($users) == 0) {
@@ -172,11 +172,11 @@ class EmpresaService
 
                 $data['empresa']['cobrador_id'] = $user->id;
 
-                $data['datos_tributarios']['responsabilidades_fiscales'] = 
+                $data['datos_tributarios']['responsabilidades_fiscales'] =
                     array_map(function ($val) {
                         return $val['responsabilidad_fiscal_id'] = $val['codigo'];
                     }, $empresa->datosTributarios->responsabilidadesFiscales->toArray());
-                
+
                 $data['empresa']['user_id'] = $user->id;
 
                 $this->createCompany($logo, $data);
@@ -198,9 +198,9 @@ class EmpresaService
             return response()->json([
                 'errors' => $e->getMessage(),
             ], 500);
-        } 
+        }
     }
-    
+
     private function parseLogoToUploadedFile(int $serial, string $logo) : UploadedFile
     {
         $pathFile = storage_path('app/public'.str_replace('storage/', '', $logo));

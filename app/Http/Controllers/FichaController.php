@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FichaRequest;
 use App\Models\Ficha;
+use App\Providers\AuthServiceProvider;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 
 class FichaController extends Controller
 {
     public function index()
     {
+        if (AuthServiceProvider::getRole() == AuthServiceProvider::admin) {
+            return response()->json(Ficha::all());
+        }
         return response()->json(Auth::user()->fichasCreadas);
     }
 
     public function show($numero)
     {
-        $ficha = Ficha::with('users')->where('numero', '=', $numero)
-            ->whereHas('creadoPor', function ($query) {
-                $query->where('id', '=', Auth::id());
-            })->first()->users;
+        $ficha = $this->getFicha($numero);
         if (!$ficha) {
             return response()->json(['error' => 'No se encontró la ficha'], 404);
         }
@@ -40,12 +42,9 @@ class FichaController extends Controller
     public function update(FichaRequest $request, $numero)
     {
         $dataFicha = $request->validated();
-        $ficha = Ficha::where('numero', '=', $numero)
-            ->whereHas('creadoPor', function ($query) {
-                $query->where('id', '=', Auth::id());
-            })->first();
+        $ficha = $this->getFicha($numero);
         if (!$ficha) {
-            return response()->json(['errors' => 'No se encontró la ficha'], 404);
+            return response()->json(['error' => 'No se encontró la ficha'], 404);
         }
         $ficha->update($dataFicha);
         return response()->json([
@@ -56,16 +55,26 @@ class FichaController extends Controller
 
     public function destroy($numero)
     {
-        $ficha = Ficha::where('numero', '=', $numero)
-            ->whereHas('creadoPor', function ($query) {
-                $query->where('id', '=', Auth::id());
-            })->first();
+        $ficha = $this->getFicha($numero);
         if (!$ficha) {
-            return response()->json(['errors' => 'No se encontró la ficha'], 404);
+            return response()->json(['error' => 'No se encontró la ficha'], 404);
         }
         $ficha->delete();
         return response()->json([
            'message' => 'Ficha eliminada correctamente.'
         ], 200);
+    }
+
+    private function getFicha(int $numero) : ? Ficha
+    {
+        $ficha = Ficha::with('users')->where('numero', '=', $numero);
+        if (AuthServiceProvider::getRole() == AuthServiceProvider::admin) {
+            $ficha = $ficha->first();
+        } else {
+            $ficha = $ficha->whereHas('creadoPor', function (Builder $query) {
+                $query->where('id', '=', Auth::id());
+            })->first();
+        }
+        return $ficha;
     }
 }

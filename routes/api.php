@@ -56,9 +56,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('update-instructor/{instructor_id}', [UserController::class, "updateInstructor"]);
         // Elimina un instructor
         Route::delete('delete-instructor/{instructor_id}', [UserController::class, "deleteInstructor"]);
-    });
-
-    Route::middleware(['role:instructor'])->group(function () {
         // Cargar masiva de aprendices
         Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
     });

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('tipo_identificacion');
-            $table->bigInteger('numero_identificacion');
+            $table->bigInteger('numero_identificacion')->unique();
             $table->string('correo_electronico')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contrasena');

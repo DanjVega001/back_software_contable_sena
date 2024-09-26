@@ -19,4 +19,9 @@ class UserRepository
         $user->save();
         return $user;
     }
+
+    public function documentOrEmailExists(int $document, string $email) : bool
+    {
+        return User::where('numero_identificacion', $document)->exists() || User::where('correo_electronico', $email)->exists();
+    }
 }

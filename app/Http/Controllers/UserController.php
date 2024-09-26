@@ -53,7 +53,7 @@ class UserController extends Controller
     }
 
     public function getAprendiz(int $aprendiz_id)
-    {   
+    {
         $user = $this->validateAprendiz($aprendiz_id);
         if (!$user) {
             return response()->json(['errors' => 'Aprendiz no econtrado']);
@@ -116,10 +116,10 @@ class UserController extends Controller
 
     public function uploadAprendicesFromCSV(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'csvFile' =>'required|file|mimes:csv,txt',
-            'numero_ficha' =>'required|numeric'
+            'numero_ficha' =>'required|numeric|exists:fichas,numero'
         ]);
 
         if ($validator->fails()) {
@@ -127,7 +127,7 @@ class UserController extends Controller
         }
 
         $file = $request->file('csvFile');
-        
+
         return $this->service->uploadAprendicesFromCSV($file, $request->get('numero_ficha'));
     }
 }

@@ -36,7 +36,7 @@ class UserService
                 'errors' => 'Hubo un error al crear el instructor.'
             ], 500);
         }
-        
+
         return response()->json([
             'message' => 'El instructor ha sido creado correctamente.'
         ], 201);
@@ -44,9 +44,6 @@ class UserService
 
     public function createAprendiz(array $data) :User
     {
-        if ($this->repository->getUserByEmail($data['correo_electronico']) != null) {
-            throw new InvalidArgumentException("Email ya registrado: " . $data['correo_electronico']);
-        }
         $data['contrasena'] = Hash::make($data['numero_identificacion']);
         $data['rol_id'] = AuthServiceProvider::aprendiz_id;
         $user = $this->repository->createUser($data);
@@ -67,25 +64,35 @@ class UserService
             $fields = $sheetData[0];
 
             $aprendices = [];
-            
-            for ($i=1; $i < count($sheetData); $i++) { 
+            $aprendicesRepetidos = [];
+
+            for ($i=1; $i < count($sheetData); $i++) {
                 $aprendizCsv = $sheetData[$i];
-                $aprendiz = $this->createAprendiz(array_combine($fields, $aprendizCsv));
+                $data = array_combine($fields, $aprendizCsv);
+                if ($this->repository->documentOrEmailExists($data['numero_identificacion'], $data['correo_electronico'])) {
+                    $aprendicesRepetidos[] = [
+                        'numero_identificacion' => $data['numero_identificacion'],
+                        'nombres' => $data['nombres'] . ' ' . $data['apellidos'],
+                    ];
+                    continue;
+                }
+                $aprendiz = $this->createAprendiz($data);
                 if ($aprendiz === null) {
                     throw new Exception("Error en la carga del aprendiz de la fila " . $i);
                 }
-                array_push($aprendices, [
+                $aprendices[] = [
                     'user_id' => $aprendiz->id,
                     'rol' => 'aprendiz'
-                ]);
+                ];
             }
-            
+
             $ficha = $this->fichaRepository->getFichaByNumero($numero_ficha);
             $ficha->users()->attach($aprendices);
 
             DB::commit();
             return response()->json([
                 'message' => 'Carga realizada correctamente',
+                'repeated' => $aprendicesRepetidos
             ]);
         } catch (InvalidArgumentException $e) {
             DB::rollBack();
@@ -98,10 +105,10 @@ class UserService
                 'error' => 'Hubo un error al cargar los aprendices.',
                 'message' => $e->getMessage(),
             ], 500);
-        } 
+        }
 
 
-        
+
     }
 
 }

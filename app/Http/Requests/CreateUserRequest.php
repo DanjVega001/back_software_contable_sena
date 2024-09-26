@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Providers\AuthServiceProvider;
+use App\Rules\UniqueUserDocument;
 use App\Rules\UniqueUserEmail;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +33,7 @@ class CreateUserRequest extends FormRequest
             'apellidos' => 'required|string',
             'correo_electronico' => ['required','string','email', $id == null ? 'unique:users' : new UniqueUserEmail($id)],
             'tipo_identificacion' => 'required|string',
-            'numero_identificacion' => 'required|numeric',
+            'numero_identificacion' => ['required','numeric','digits_between:4,11',$id == null ? 'unique:users' : new UniqueUserDocument($id)],
             'contrasena' => 'string'
         ];
     }

@@ -86,7 +86,8 @@ class UserController extends Controller
         }
         $user->update($dataUpdateUser);
         return response()->json([
-           'message' => 'El aprendiz ha sido actualizado correctamente.'
+            'message' => 'El aprendiz ha sido actualizado correctamente.',
+            'aprendiz' => $user,
         ], 200);
     }
 

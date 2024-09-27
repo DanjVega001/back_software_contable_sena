@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FichaRequest;
 use App\Models\Ficha;
 use App\Providers\AuthServiceProvider;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 
 class FichaController extends Controller
@@ -71,7 +70,7 @@ class FichaController extends Controller
         if (AuthServiceProvider::getRole() == AuthServiceProvider::admin) {
             $ficha = $ficha->first();
         } else {
-            $ficha = $ficha->whereHas('creadoPor', function (Builder $query) {
+            $ficha = $ficha->whereHas('creadoPor', function ($query) {
                 $query->where('id', '=', Auth::id());
             })->first();
         }

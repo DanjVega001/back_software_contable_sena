@@ -35,7 +35,7 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    /*
+    
     public function messages()
     {
         return [
@@ -46,5 +46,5 @@ class LoginRequest extends FormRequest
             'contrasena.required' => 'La contraseña es obligatoria.',
             'contrasena.string' => 'La contraseña debe ser un texto válido.',
         ];
-    }*/
+    }
 }

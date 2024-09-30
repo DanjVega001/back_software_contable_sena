@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DatoBasico extends Model
 {
@@ -33,5 +34,10 @@ class DatoBasico extends Model
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'empresa_serial', 'serial');
+    }
+
+    public function tercero() : BelongsTo
+    {
+        return $this->belongsTo(Tercero::class);
     }
 }

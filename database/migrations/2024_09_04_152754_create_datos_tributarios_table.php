@@ -21,7 +21,6 @@ class CreateDatosTributariosTable extends Migration
             $table->boolean('es_agente_retenedor');
             $table->boolean('maneja_impuesto_ad_valorem');
             $table->boolean('moneda_extranjera');
-            $table->json('tributos');
             $table->unsignedInteger('actividad_economica_codigo_ciiu');
             $table->foreign('actividad_economica_codigo_ciiu')->references('codigo_ciiu')->on('actividades_economicas');
             $table->unsignedBigInteger('empresa_serial');

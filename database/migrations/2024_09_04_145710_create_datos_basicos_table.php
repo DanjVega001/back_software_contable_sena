@@ -28,6 +28,8 @@ class CreateDatosBasicosTable extends Migration
             $table->foreign('ciudad_codigo_dian')->references('codigo_dian')->on('ciudades');
             $table->unsignedBigInteger('empresa_serial')->nullable();
             $table->foreign('empresa_serial')->references('serial')->on('empresas')->cascadeOnDelete();
+            $table->unsignedBigInteger('tercero_id')->nullable();
+            $table->foreign('tercero_id')->references('id')->on('terceros')->cascadeOnDelete();
             $table->timestamps();
         });
     }

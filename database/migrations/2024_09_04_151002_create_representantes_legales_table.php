@@ -20,6 +20,7 @@ class CreateRepresentantesLegalesTable extends Migration
             $table->string('tipo_identificacion');
             $table->unsignedBigInteger('numero_identificacion');
             $table->boolean('tiene_socios');
+            $table->json('lista_socios')->nullable();
             $table->unsignedBigInteger('empresa_serial');
             $table->foreign('empresa_serial')->references('serial')->on('empresas')->cascadeOnDelete();
             $table->timestamps();

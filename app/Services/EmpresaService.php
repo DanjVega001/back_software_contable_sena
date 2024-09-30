@@ -174,14 +174,22 @@ class EmpresaService
 
                 $data['datos_tributarios']['responsabilidades_fiscales'] =
                     array_map(function ($val) {
-                        return $val['responsabilidad_fiscal_id'] = $val['codigo'];
+                        return $val['codigo'];
                     }, $empresa->datosTributarios->responsabilidadesFiscales->toArray());
+
+                $data['datos_tributarios']['tributos'] =
+                    array_map(function ($val) {
+                        return $val['id'];
+                    }, $empresa->datosTributarios->tributos->toArray());
 
                 $data['empresa']['user_id'] = $user->id;
 
+                if ($this->empresaRepository->userHasCompany($user->id)) {
+                    continue;
+                }
+                
                 $this->createCompany($logo, $data);
             }
-
 
             DB::commit();
 

@@ -43,6 +43,8 @@ Route::middleware('auth:api')->group(function () {
         Route::put('update-aprendiz/{aprendiz_id}', [UserController::class, "updateAprendiz"]);
         // Elimina un aprendiz
         Route::delete('delete-aprendiz/{aprendiz_id}', [UserController::class, "deleteAprendiz"]);
+        // Cargar masiva de aprendices
+        Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
     });
 
     Route::middleware(['role:admin'])->group(function () {
@@ -56,8 +58,7 @@ Route::middleware('auth:api')->group(function () {
         Route::put('update-instructor/{instructor_id}', [UserController::class, "updateInstructor"]);
         // Elimina un instructor
         Route::delete('delete-instructor/{instructor_id}', [UserController::class, "deleteInstructor"]);
-        // Cargar masiva de aprendices
-        Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
+
     });
 
     // Trae al usuario autenticado

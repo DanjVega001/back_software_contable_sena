@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Empresa;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaRepository
 {
@@ -33,5 +34,10 @@ class EmpresaRepository
     {
         return Empresa::with(['datosBasicos', 'representanteLegal', 'datosTributarios', 'datosTributarios.responsabilidadesFiscales'])
             ->where('serial', $serial)->first();
+    }
+
+    public function userHasCompany(int $user_id) : bool
+    {
+        return DB::table('empresas')->where('user_id', '=', $user_id)->exists();
     }
 }

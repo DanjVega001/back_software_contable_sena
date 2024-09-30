@@ -32,9 +32,9 @@ class DatosTributariosRequest extends FormRequest
             'datos_tributarios.es_agente_retenedor' => 'required|boolean',
             'datos_tributarios.maneja_impuesto_ad_valorem' => 'required|boolean',
             'datos_tributarios.moneda_extranjera' => 'required|boolean',
-            'datos_tributarios.tributos' => 'required|json',
             'datos_tributarios.actividad_economica_codigo_ciiu' => 'required|numeric|exists:actividades_economicas,codigo_ciiu',
             'datos_tributarios.responsabilidades_fiscales' => 'required|array',
+            'datos_tributarios.tributos' => 'required|array',
         ];
     }
 }

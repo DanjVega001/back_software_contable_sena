@@ -12,16 +12,17 @@ class RepresentanteLegal extends Model
     protected $table ='representantes_legales';
 
     protected $fillable = [
-        'nombres', 
-        'apellidos', 
-        'tipo_identificacion', 
+        'nombres',
+        'apellidos',
+        'tipo_identificacion',
         'numero_identificacion',
-        'tiene_socios', 
+        'tiene_socios',
+        'lista_socios',
         'empresa_serial'
     ];
 
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'empresa_serial', 'serial');
-    }    
+    }
 }

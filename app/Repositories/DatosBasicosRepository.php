@@ -4,9 +4,9 @@ namespace App\Repositories;
 
 use App\Models\DatoBasico;
 
-class DatosBasicosRepository 
+class DatosBasicosRepository
 {
-    
+
     public function saveBasicData(array $data) : int
     {
         $basicData = new DatoBasico($data);

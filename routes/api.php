@@ -71,6 +71,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('actividades-economicas', [ActividadEconomicaController::class, "getActividadesEconomicas"]);
     // Trae las empresas de un usuario
     Route::get('companies', [EmpresaController::class, "getCompanies"]);
+    // Trae todos los tributos
+    Route::get('tributos', [\App\Http\Controllers\TributoContoller::class, "getTributos"]);
 
     // Crud Empresa
     Route::middleware(['onlyMyCompany'])->group(function () {

@@ -72,8 +72,8 @@ class EmpresaTest extends TestCase
                 'es_agente_retenedor' => false,
                 'maneja_impuesto_ad_valorem' => false,
                 'moneda_extranjera' => false,
-                'tributos' => '{"impuesto_general": 10, "impuesto_renta": 5, "impuesto_renta_patrimonial": 0}',
-                'actividad_economica_codigo_ciiu' => 6300,
+                'tributos' => [3, 7],
+                'actividad_economica_codigo_ciiu' => 10,
                 'responsabilidades_fiscales' => ['0-47', 'O-15']
             ],
             'representante_legal' => [
@@ -81,7 +81,8 @@ class EmpresaTest extends TestCase
                 'nombres' => 'Nombre Legal',
                 'tipo_identificacion' => 'Cédula',
                 'numero_identificacion' => 123456789,
-                'tiene_socios' => true
+                'tiene_socios' => true,
+                'lista_socios' => '{"socios": [{"nombre": "Socio 1", "apellido": "Apellido 1", "identificacion": "123456789", "parentesco": "Conyuge"}]}'
             ]
         ];
     }
@@ -96,8 +97,8 @@ class EmpresaTest extends TestCase
      *
      * @return void
      */
-    
-    
+
+
 
     public function test_create_company()
     {
@@ -105,19 +106,20 @@ class EmpresaTest extends TestCase
         $response->assertStatus(201);
     }
 
-    
-    
+
+
+
     public function test_update_company()
     {
         $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
 
-    /*
+
     public function test_delete_company()
     {
         $response = $this->deleteJson('/api/delete-company/' . $this->getRandomSerialCompany(), [], $this->headers());
         $response->assertStatus(200);
-    }*/
+    }
 
 }

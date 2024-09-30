@@ -123,9 +123,9 @@ class EmpresaService
 
             $this->datosTributariosRepository->deleteTributaryData($empresa->datosTributarios);
 
-            $this->empresaRepository->deleteCompany($empresa);
-
             $this->datosBasicosRepository->deleteBasicData($empresa->datosBasicos);
+
+            $this->empresaRepository->deleteCompany($empresa);
 
             DB::commit();
 
@@ -135,7 +135,7 @@ class EmpresaService
             ], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-
+            dd($th);
             return response()->json([
                 'errors' => 'Hubo un error al eliminar la empresa.'
             ], 500);

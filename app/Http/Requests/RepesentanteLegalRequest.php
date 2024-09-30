@@ -31,6 +31,7 @@ class RepesentanteLegalRequest extends FormRequest
             'representante_legal.tipo_identificacion' => "required|string",
             'representante_legal.numero_identificacion' => "required|numeric",
             'representante_legal.tiene_socios' => "required|boolean",
+            'representante_legal.lista_socios' => "nullable|json",
         ];
     }
 }

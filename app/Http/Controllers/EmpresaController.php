@@ -77,7 +77,8 @@ class EmpresaController extends Controller
             'datosBasicos',
             'representanteLegal',
             'datosTributarios',
-            'datosTributarios.responsabilidadesFiscales'
+            'datosTributarios.responsabilidadesFiscales',
+            'datosTributarios.tributos'
         ])
             ->where([
                 'user_id' => Auth::id(),

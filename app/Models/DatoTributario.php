@@ -19,7 +19,6 @@ class DatoTributario extends Model
         'es_agente_retenedor',
         'maneja_impuesto_ad_valorem',
         'moneda_extranjera',
-        'tributos',
         'actividad_economica_codigo_ciiu',
         'empresa_serial'
     ];

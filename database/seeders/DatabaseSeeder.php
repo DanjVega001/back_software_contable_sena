@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CiudadesSeeder::class);
         $this->call(ResponsabilidadesFiscalesSeeder::class);
         $this->call(ActividadesEconomicasSeeder::class);
+        $this->call(TributosSeeder::class);
     }
 }

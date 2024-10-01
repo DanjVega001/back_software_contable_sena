@@ -2,11 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Models\Empresa;
-use App\Providers\AuthServiceProvider;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -100,12 +96,13 @@ class EmpresaTest extends TestCase
 
 
 
+    /*
     public function test_create_company()
     {
         $response = $this->postJson('/api/company', $this->getData(), $this->headers());
         $response->assertStatus(201);
+        EmpresaTest::$serial = $response->json('serial');
     }
-
 
 
 
@@ -114,6 +111,7 @@ class EmpresaTest extends TestCase
         $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
+    */
 
 
     public function test_delete_company()

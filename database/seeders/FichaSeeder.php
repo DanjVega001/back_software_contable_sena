@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ficha;
-use App\Models\User;
+use App\Modules\Settings\User\Models\Ficha;
+use App\Modules\Shared\Models\User;
 use Illuminate\Database\Seeder;
 
 class FichaSeeder extends Seeder

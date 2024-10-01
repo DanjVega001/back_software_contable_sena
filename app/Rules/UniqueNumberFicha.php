@@ -26,12 +26,12 @@ class UniqueNumberFicha implements Rule
     {
         $numero = request("numero") ?? 0;
         if ($numero == 0) {
-            return !\App\Models\Ficha::where('numero', $value)->exists();
+            return !\App\Modules\Settings\User\Models\Ficha::where('numero', $value)->exists();
         }
         if ($numero == $value) {
             return true;
         }
-        return !\App\Models\Ficha::where('numero', $value)->exists();
+        return !\App\Modules\Settings\User\Models\Ficha::where('numero', $value)->exists();
     }
 
     /**

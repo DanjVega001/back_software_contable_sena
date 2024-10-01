@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Empresa;
+use App\Modules\Settings\Company\Models\Empresa;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class OnlyMyCompany
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function handle(Request $request, Closure $next)
     {
@@ -26,7 +26,7 @@ class OnlyMyCompany
         if (!$exists) {
             return response()->json(['error' => 'No se encontró la empresa'], 404);
         }
-        
+
         return $next($request);
     }
 }

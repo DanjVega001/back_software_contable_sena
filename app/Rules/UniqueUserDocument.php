@@ -27,8 +27,8 @@ class UniqueUserDocument implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !\App\Models\User::where('numero_identificacion', $value)->exists() ||
-            \App\Models\User::find($this->user_id)->numero_identificacion == $value;
+        return !\App\Modules\Shared\Models\User::where('numero_identificacion', $value)->exists() ||
+            \App\Modules\Shared\Models\User::find($this->user_id)->numero_identificacion == $value;
     }
 
     /**

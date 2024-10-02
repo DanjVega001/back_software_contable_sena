@@ -40,7 +40,7 @@ class DatosBasicosRequest extends FormRequest
         ];
     }
 
-    /*
+    
     public function messages()
     {
         return [
@@ -55,5 +55,5 @@ class DatosBasicosRequest extends FormRequest
             "telefono.required" => "El campo teléfono es obligatorio.",
             "ciudad_codigo_dian.required" => "El campo código de la ciudad es obligatorio"
         ];
-    }*/
+    }
 }

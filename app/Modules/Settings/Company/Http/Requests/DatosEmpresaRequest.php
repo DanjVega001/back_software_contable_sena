@@ -36,7 +36,7 @@ class DatosEmpresaRequest extends FormRequest
             'datos_empresa.correo_contacto' => "required|string",
             'datos_empresa.nombre_contacto' => "required|string",
             'datos_empresa.es_consorcio' => "nullable|boolean",
-            'datos_empresa.pagina_web' => "nullable|url",
+            'datos_empresa.pagina_web' => "nullable|string",
             'datos_empresa.cobrador_id' => "required|numeric|exists:users,id",
             'datos_empresa.logo' => "required|image|mimes:jpeg,png,jpg,gif|max:10000",
             'datos_empresa.user_id' => "nullable|numeric|exists:users,id",

@@ -11,6 +11,31 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * App\Modules\Settings\Third\Models\Tercero
+ *
+ * @property int $id
+ * @property int $codigo_sucursal
+ * @property int $empresa_serial
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Modules\Settings\Third\Models\Contacto> $contacto
+ * @property-read int|null $contacto_count
+ * @property-read DatoBasico|null $datosBasicos
+ * @property-read \App\Modules\Settings\Third\Models\DatoFacturacion|null $datosFacturacion
+ * @property-read Empresa $empresa
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Modules\Settings\Third\Models\TipoTercero> $tipoTerceros
+ * @property-read int|null $tipo_terceros_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereCodigoSucursal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereEmpresaSerial($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Tercero extends Model
 {
     use HasFactory;
@@ -24,10 +49,10 @@ class Tercero extends Model
 
     public function datosBasicos() : BelongsTo
     {
-        return $this->belongsTo(DatoBasico::class);
+        return $this->belongsTo(DatoBasico::class, 'tercero_id', 'id');
     }
 
-    public function contacto() : HasMany
+    public function contactos() : HasMany
     {
         return $this->hasMany(Contacto::class);
     }
@@ -43,7 +68,7 @@ class Tercero extends Model
             'tipo_tercero_id');
     }
 
-    public function empresas() : BelongsTo
+    public function empresa() : BelongsTo
     {
         return $this->belongsTo(Empresa::class, 'empresa_serial', 'serial');
     }

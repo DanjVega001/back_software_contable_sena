@@ -13,4 +13,10 @@ class DatosFacturacionRepository
         $datosFacturacion->save();
         $datosFacturacion->respFiscales()->attach($data['responsabilidades_fiscales']);
     }
+
+    public function updateBillingData(DatoFacturacion $datosFacturacion, $datos_facturacion)
+    {
+        $datosFacturacion->update($datos_facturacion);
+        $datosFacturacion->respFiscales()->sync($datos_facturacion['responsabilidades_fiscales']);
+    }
 }

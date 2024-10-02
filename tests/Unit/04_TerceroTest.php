@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Modules\Settings\Company\Models\Empresa;
 use Tests\TestCase;
 
 
@@ -57,6 +58,24 @@ class TerceroTest extends TestCase
         ];
     }
 
+
+    private function updateData(array $data): array
+    {
+        $data['datos_basicos']['telefono'] = 200000;
+        $data['datos_basicos']['ciudad_codigo_dian'] = 5002;
+        $data['datos_basicos']['razon_social'] = "EMpresa test 2";
+        $data['datos_terceros']['codigo_sucursal'] = 005;
+        $data['datos_contactos'][0]['nombres'] = 'Jhon Doe';
+        $data['datos_facturacion']['correo_electronico'] = '|22112@example.com';
+        return $data;
+    }
+
+    private function idThird(): int
+    {
+        return \DB::table('terceros')->where('empresa_serial', '=', EmpresaTest::$serial)
+            ->first()->id;
+    }
+
     /**
      * A basic unit test example.
      *
@@ -68,5 +87,19 @@ class TerceroTest extends TestCase
         $response = $this->postJson('/api/create-third', $this->getData(), $this->headers());
         $response->assertStatus(201);
 
+    }
+
+    public function test_update_third()
+    {
+        $response = $this->putJson('/api/update-third/' .$this->idThird(), $this->updateData($this->getData()), $this->headers());
+        $response->assertStatus(200);
+    }
+
+    public function test_delete_third()
+    {
+        $response = $this->deleteJson('/api/delete-third/'. $this->idThird(), [
+            "empresa_serial" => EmpresaTest::$serial
+        ], $this->headers());
+        $response->assertStatus(200);
     }
 }

@@ -26,6 +26,7 @@ class ContactoRequest extends FormRequest
     {
         return [
             'datos_contactos' => 'nullable|array',
+            'datos_contactos.*.id' => 'nullable|integer',
             'datos_contactos.*.nombre' => 'required|string',
             'datos_contactos.*.apellido' => 'nullable|string',
             'datos_contactos.*.correo_electronico' => 'nullable|email',

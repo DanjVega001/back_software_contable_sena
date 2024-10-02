@@ -23,4 +23,9 @@ class DatosBasicosRepository
     {
         $basicData->delete();
     }
+
+    public function findByTercero(int $tercero_id)
+    {
+        return DatoBasico::where('tercero_id', $tercero_id)->first();
+    }
 }

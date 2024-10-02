@@ -9,6 +9,42 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * App\Modules\Settings\Company\Models\Empresa
+ *
+ * @property int $serial
+ * @property string $tipo_regimen_iva
+ * @property string $correo_contacto
+ * @property string $nombre_contacto
+ * @property string|null $pagina_web
+ * @property int|null $es_consorcio
+ * @property int $cobrador_id
+ * @property string|null $logo
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read DatoBasico|null $datosBasicos
+ * @property-read \App\Modules\Settings\Company\Models\DatoTributario|null $datosTributarios
+ * @property-read \App\Modules\Settings\Company\Models\RepresentanteLegal|null $representanteLegal
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Tercero> $terceros
+ * @property-read int|null $terceros_count
+ * @property-read User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereCobradorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereCorreoContacto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereEsConsorcio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereNombreContacto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa wherePaginaWeb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereSerial($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereTipoRegimenIva($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Empresa whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Empresa extends Model
 {
     use HasFactory;

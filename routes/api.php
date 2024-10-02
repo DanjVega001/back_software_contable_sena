@@ -94,5 +94,15 @@ Route::middleware('auth:api')->group(function () {
         Route::post('create-third', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "createThird"])
             ->name("create.third");
 
+        Route::put('update-third/{tercero_id}', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "updateThird"]);
+
+        Route::delete('delete-third/{tercero_id}', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "deleteThird"]);
+
+        // Trae todos los terceros de mi empresa
+        Route::get('thirds/{serial}', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "getAllThirds"]);
+
+        // Trae un tercero de mi empresa
+        Route::get('third/{serial}/{tercero_id}', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "getThird"]);
+
     });
 });

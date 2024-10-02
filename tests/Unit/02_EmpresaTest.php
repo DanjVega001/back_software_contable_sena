@@ -96,7 +96,6 @@ class EmpresaTest extends TestCase
 
 
 
-    /*
     public function test_create_company()
     {
         $response = $this->postJson('/api/company', $this->getData(), $this->headers());
@@ -106,12 +105,12 @@ class EmpresaTest extends TestCase
 
 
 
+    /*
     public function test_update_company()
     {
         $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
-    */
 
 
     public function test_delete_company()
@@ -119,5 +118,6 @@ class EmpresaTest extends TestCase
         $response = $this->deleteJson('/api/delete-company/' . $this->getRandomSerialCompany(), [], $this->headers());
         $response->assertStatus(200);
     }
+    */
 
 }

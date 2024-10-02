@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\ActividadEconomicaController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CiudadController;
-use App\Http\Controllers\EmpresaController;
-use App\Http\Controllers\FichaController;
-use App\Http\Controllers\RespFiscalController;
-use App\Http\Controllers\UserController;
+use App\Modules\Auth\Http\Controllers\AuthController;
+use App\Modules\Settings\Company\Http\Controllers\ActividadEconomicaController;
+use App\Modules\Settings\Company\Http\Controllers\EmpresaController;
+use App\Modules\Settings\User\Http\Controllers\FichaController;
+use App\Modules\Settings\User\Http\Controllers\UserController;
+use App\Modules\Shared\Http\Controllers\CiudadController;
+use App\Modules\Shared\Http\Controllers\RespFiscalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [AuthController::class, "login"]);
-
 
 // Trae todas las ciudades
 Route::get('cities', [CiudadController::class, "getCities"]);
@@ -45,6 +44,8 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('delete-aprendiz/{aprendiz_id}', [UserController::class, "deleteAprendiz"]);
         // Cargar masiva de aprendices
         Route::post('upload-aprendices', [UserController::class, 'uploadAprendicesFromCSV']);
+
+
     });
 
     Route::middleware(['role:admin'])->group(function () {
@@ -58,7 +59,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('update-instructor/{instructor_id}', [UserController::class, "updateInstructor"]);
         // Elimina un instructor
         Route::delete('delete-instructor/{instructor_id}', [UserController::class, "deleteInstructor"]);
-
     });
 
     // Trae al usuario autenticado
@@ -73,7 +73,7 @@ Route::middleware('auth:api')->group(function () {
     // Trae las empresas de un usuario
     Route::get('companies', [EmpresaController::class, "getCompanies"]);
     // Trae todos los tributos
-    Route::get('tributos', [\App\Http\Controllers\TributoContoller::class, "getTributos"]);
+    Route::get('tributos', [\App\Modules\Settings\Company\Http\Controllers\TributoController::class, "getTributos"]);
 
     // Crud Empresa
     Route::middleware(['onlyMyCompany'])->group(function () {
@@ -89,5 +89,10 @@ Route::middleware('auth:api')->group(function () {
 
         // Clonar la empresa en los aprendices
         Route::post('clone-company', [EmpresaController::class, 'cloneCompany']);
+
+        // Crear un tercero en mi empresa
+        Route::post('create-third', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "createThird"])
+            ->name("create.third");
+
     });
 });

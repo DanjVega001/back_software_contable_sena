@@ -13,6 +13,9 @@ class UserFactory extends Factory
      *
      * @return array
      */
+
+    protected $model = \App\Modules\Shared\Models\User::class;
+
     public function definition()
     {
         return [

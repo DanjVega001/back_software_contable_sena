@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
 class UniqueUserEmail implements Rule
@@ -28,8 +27,8 @@ class UniqueUserEmail implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !\App\Models\User::where('correo_electronico', $value)->exists() ||
-            \App\Models\User::find($this->user_id)->correo_electronico == $value;
+        return !\App\Modules\Shared\Models\User::where('correo_electronico', $value)->exists() ||
+            \App\Modules\Shared\Models\User::find($this->user_id)->correo_electronico == $value;
     }
 
     /**

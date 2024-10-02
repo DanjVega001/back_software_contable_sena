@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Administrador',
             'apellidos' => 'Sistema',
             'correo_electronico' => 'admin@example.com',
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 1,
         ]);
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Instructor 1',
             'apellidos' => 'SENA',
             'correo_electronico' => 'instructor1@example.com',
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Instructor 2',
             'apellidos' => 'SENA',
             'correo_electronico' => 'instructor2@example.com',
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Instructor 3',
             'apellidos' => 'SENA',
             'correo_electronico' => 'instructor3@example.com',
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Instructor 4',
             'apellidos' => 'SENA',
             'correo_electronico' => 'instructor4@example.com',
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
-        \App\Models\User::create([
+        \App\Modules\Shared\Models\User::create([
             'nombres' => 'Instructor 5',
             'apellidos' => 'SENA',
             'correo_electronico' => 'instructor5@example.com',
@@ -68,6 +68,6 @@ class UserSeeder extends Seeder
             'contrasena' => Hash::make('123456'),
             'rol_id' => 2,
         ]);
-        \App\Models\User::factory(5)->create();
+        \App\Modules\Shared\Models\User::factory(5)->create();
     }
 }

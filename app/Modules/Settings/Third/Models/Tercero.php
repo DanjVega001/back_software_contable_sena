@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereEmpresaSerial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tercero whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Modules\Settings\Third\Models\Contacto> $contactos
+ * @property-read int|null $contactos_count
  * @mixin \Eloquent
  */
 class Tercero extends Model

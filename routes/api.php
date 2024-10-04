@@ -7,7 +7,9 @@ use App\Modules\Settings\User\Http\Controllers\FichaController;
 use App\Modules\Settings\User\Http\Controllers\UserController;
 use App\Modules\Shared\Http\Controllers\CiudadController;
 use App\Modules\Shared\Http\Controllers\RespFiscalController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::get('test', function () {
+    return response()->json(\App\Modules\Accounting\Models\CuentaContable::with('descendants')
+        ->where('nivel', '=', \App\Modules\Accounting\Utils\Constants\AccountConstants::classAccName)->get());
+});
+
 
 Route::post('login', [AuthController::class, "login"]);
 

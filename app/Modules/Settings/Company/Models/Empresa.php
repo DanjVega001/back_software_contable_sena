@@ -2,11 +2,13 @@
 
 namespace App\Modules\Settings\Company\Models;
 
+use App\Modules\Accounting\Models\CuentaContable;
 use App\Modules\Settings\Third\Models\Tercero;
 use App\Modules\Shared\Models\DatoBasico;
 use App\Modules\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -94,5 +96,11 @@ class Empresa extends Model
     public function terceros() : HasMany
     {
         return $this->hasMany(Tercero::class, 'empresa_serial', 'serial');
+    }
+
+    public function cuentasContables() : BelongsToMany
+    {
+        return $this->belongsToMany(CuentaContable::class, 'empresa_cuenta_contable', 'empresa_serial',
+         'cuenta_contable_id');
     }
 }

@@ -16,7 +16,7 @@ class EmpresaTest extends TestCase
     {
         return [
             'Authorization' => 'Bearer ' . LoginTest::$token,
-            'Content-Type' => 'application/json',
+            'Content-Type' => 'multipart/form-data',
             'Accept' => 'application/json'
         ];
     }
@@ -104,14 +104,14 @@ class EmpresaTest extends TestCase
     }
 
 
-
-    /*
+/*
     public function test_update_company()
     {
         $response = $this->putJson('/api/update-company/' . $this->getRandomSerialCompany(), $this->updateData($this->getData()), $this->headers());
         $response->assertStatus(200);
     }
 
+    /*
 
     public function test_delete_company()
     {

@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ActividadesEconomicasSeeder::class);
         $this->call(TributosSeeder::class);
         $this->call(TipoTerceroSeeder::class);
+        $this->call(CuentasContablesSeeder::class);
     }
 }

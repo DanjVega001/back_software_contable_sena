@@ -27,6 +27,7 @@ class DatosBasicosRequest extends FormRequest
         return false;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -48,20 +49,20 @@ class DatosBasicosRequest extends FormRequest
         ];
     }
 
-    
-    public function messages()
+
+    public function messages() : array
     {
         return [
-            "tipo_razon_social.required" => "El campo razón social es obligatorio.",
-            "tipo_identificacion.required" => "El campo tipo de identificación es obligatorio.",
-            "numero_identificacion.required" => "El campo número de identificación es obligatorio.",
-            "razon_social.required" => "El campo razón social es obligatorio.",
-            "nombres.required" => "El campo nombres es obligatorio.",
-            "apellidos.required" => "El campo apellidos es obligatorio.",
-            "nombre_comercial.required" => "El campo nombre comercial es obligatorio.",
-            "direccion.required" => "El campo dirección es obligatorio.",
-            "telefono.required" => "El campo teléfono es obligatorio.",
-            "ciudad_codigo_dian.required" => "El campo código de la ciudad es obligatorio"
+            "datos_basicos.tipo_razon_social.required" => "El campo tipo razón social es obligatorio.",
+            "datos_basicos.tipo_identificacion.required" => "El campo tipo de identificación es obligatorio.",
+            "datos_basicos.numero_identificacion.required" => "El campo número de identificación es obligatorio.",
+            "datos_basicos.razon_social.required" => "El campo razón social es obligatorio.",
+            "datos_basicos.nombres.required" => "El campo nombres es obligatorio.",
+            "datos_basicos.apellidos.required" => "El campo apellidos es obligatorio.",
+            "datos_basicos.nombre_comercial.required" => "El campo nombre comercial es obligatorio.",
+            "datos_basicos.direccion.required" => "El campo dirección es obligatorio.",
+            "datos_basicos.telefono.required" => "El campo teléfono es obligatorio.",
+            "datos_basicos.ciudad_codigo_dian.required" => "El campo código de la ciudad es obligatorio"
         ];
     }
 }

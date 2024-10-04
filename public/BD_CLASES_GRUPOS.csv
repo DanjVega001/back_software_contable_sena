@@ -1,0 +1,63 @@
+codigo,nombre,nivel,naturaleza
+1,ACTIVO,clase,deudora
+11,EFECTIVO,grupo,deudora
+12,INVERSIONES,grupo,deudora
+13,CLIENTES -CUENTAS POR COBRAR ,grupo,deudora
+14,INVENTARIOS,grupo,deudora
+15,PROPIEDAD PLANTA Y EQUIPO,grupo,deudora
+16,INTANGIBLES ,grupo,deudora
+17,ANTICIPOS Y DIFERIDOS ,grupo,deudora
+18,OTROS ACTIVOS,grupo,deudora
+19,VALORIZACIONES ,grupo,deudora
+2,PASIVO,clase,acreedora
+21,OBLIGACIONES FINANCIERAS,grupo,acreedora
+22,CUENTAS COMERCIALES POR PAGAR,grupo,acreedora
+23,CUENTAS POR PAGAR,grupo,acreedora
+24,IMPUESTOS GRAVAMENES Y TASAS ,grupo,acreedora
+25,OBLIGACIONES LABORALES,grupo,acreedora
+26,PASIVOS ESTIMADOS Y PROVISIONES,grupo,acreedora
+27,ANTICIPOS Y DIFERIDOS,grupo,acreedora
+28,OTROS PASIVOS,grupo,acreedora
+29,BONOS Y PAPELES COMERCIALES,grupo,acreedora
+3,PATRIMONIO,clase,acreedora
+31,CAPITAL SOCIAL,grupo,acreedora
+32,SIPERÁVIT DE CAPITAL,grupo,acreedora
+33,RESERVAS,grupo,acreedora
+34,REVALORIZACIÓN DEL PATRIMONIO,grupo,acreedora
+35,DIVIDENDOS,grupo,acreedora
+36,RESULTADOS DEL EJERCICIO,grupo,acreedora
+37,RESULTADOS DE EJERCICIOS ANTERIORES,grupo,acreedora
+38,VALORACIONES Y OTROS,grupo,acreedora
+4,INGRESOS,clase,acreedora
+41,INGRESOS POR ACTIVIDADES ORDINARIAS,grupo,acreedora
+42,NO OPERACIONALES,grupo,acreedora
+43,INGRESOS FINANCIEROS,grupo,acreedora
+47,REAJUSTE FISCAL,grupo,acreedora
+5,GASTOS,clase,deudora
+51,OPERACIONALES DE ADMINISTRACION,grupo,deudora
+52,OPERACIONALES DE VENTAS,grupo,deudora
+53,NO OPERACIONALES,grupo,deudora
+54,IMPUESTO DE RENTA Y COMPLEMENTARIOS,grupo,deudora
+59,GANANCIAS Y PÉRDIDAS,grupo,deudora
+6,Gastos por costo de ventas*,clase,deudora
+61,Costo de ventas y prestacion de servicios,grupo,deudora
+62,Compras,grupo,deudora
+7,Costos de producción o de operación ,clase,deudora
+71,Materia prima ,grupo,deudora
+72,Mano de obra directa,grupo,deudora
+73,Costos indirectos,grupo,deudora
+74,Contratos de servicios ,grupo,deudora
+8,CUENTAS DE ORDEN DEUDORAS,clase,deudora
+81,DERECHOS CONTINGENTES,grupo,deudora
+82,Deudoras fiscales,grupo,deudora
+83,Deudoras de control,grupo,deudora
+84,Derechos contingentes por el contrario (CR),grupo,acreedora
+85,Deudores fiscales por el contrario (CR),grupo,acreedora
+86,Deudores de control por el contrario (CR),grupo,acreedora
+9,CUENTAS DE ORDEN ACREEDORAS,clase,acreedora
+91,Responsabilidades contingentes,grupo,acreedora
+92,Acreedorass fiscales,grupo,acreedora
+93,Acreedores de control,grupo,acreedora
+94,Responsabilidades contingentes por el contrario (DB),grupo,deudora
+95,Acreedores fiscales por el contrario (DB),grupo,deudora
+96,Acreedores de control por el contrario (DB),grupo,deudora

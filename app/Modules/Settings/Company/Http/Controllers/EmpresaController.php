@@ -24,8 +24,8 @@ class EmpresaController extends Controller
     }
 
     public function createCompany(
-        DatosBasicosRequest $datosBasicosReq,
         DatosEmpresaRequest $datosEmpresaReq,
+        DatosBasicosRequest $datosBasicosReq,
         DatosTributariosRequest $datosTributariosReq,
         RepesentanteLegalRequest $representanteLegalReq
     ) {
@@ -45,12 +45,12 @@ class EmpresaController extends Controller
 
     public function updateCompany(
         int $serial,
-        DatosBasicosRequest $datosBasicosReq,
         DatosEmpresaRequest $datosEmpresaReq,
+        DatosBasicosRequest $datosBasicosReq,
         DatosTributariosRequest $datosTributariosReq,
         RepesentanteLegalRequest $representanteLegalReq
     ) {
-
+        $datosBasicos = \request()->all();
         $datosBasicos = $datosBasicosReq->validated();
         $datosEmpresa = $datosEmpresaReq->validated();
         $datosTributarios = $datosTributariosReq->validated();

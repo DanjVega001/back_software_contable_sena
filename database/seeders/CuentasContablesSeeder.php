@@ -17,8 +17,8 @@ class CuentasContablesSeeder extends Seeder
     {
         try {
             DB::beginTransaction();
-            $route = public_path('BD_CLASES_GRUPOS.csv');
-            $file = new \Illuminate\Http\UploadedFile($route, 'BD_CLASES_GRUPOS.csv');
+            $route = public_path('bd_puc.csv');
+            $file = new \Illuminate\Http\UploadedFile($route, 'bd_puc.csv');
             $reader = new Csv();
             $spreadsheet = $reader->load($file);
             $sheetData = $spreadsheet->getActiveSheet()->toArray();

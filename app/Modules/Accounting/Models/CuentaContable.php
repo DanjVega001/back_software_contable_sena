@@ -2,6 +2,7 @@
 
 namespace App\Modules\Accounting\Models;
 
+use App\Modules\Accounting\Utils\Constants\AccountConstants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,7 +25,7 @@ class CuentaContable extends Model
 
     protected $table = 'cuentas_contables';
 
-    protected $fillable = ['codigo', 'nombre', 'descripcion', 'nivel', 'naturaleza', 'padre_id'];
+    protected $fillable = ['codigo', 'nombre', 'descripcion', 'nivel', 'naturaleza', 'padre_id', 'empresa_serial'];
 
     public function parent() : BelongsTo
     {
@@ -36,20 +37,17 @@ class CuentaContable extends Model
         return $this->hasMany(CuentaContable::class, 'padre_id');
     }
 
-    public function descendants()
+    public function descendants($empresa_serial): HasMany
     {
-        return $this->childrens()->with('descendants');
-    }
-
-    public function buildTree()
-    {
-
-
-    }
-
-    public function loadClass()
-    {
-
+        if ($this->nivel == AccountConstants::classAccName || $this->nivel == AccountConstants::groupAccName
+            || $this->nivel == AccountConstants::accountAccName)
+        {
+            return $this->childrens()->with('descendants');
+        }
+        else {
+            return $this->childrens()->with('descendants')->where('empresa_serial',
+                '=', $empresa_serial);
+        }
     }
 
 }

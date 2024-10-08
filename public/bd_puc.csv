@@ -1,0 +1,412 @@
+codigo,nombre,nivel,naturaleza
+1,ACTIVO,clase,deudora
+11,Efectivo o equivalente al efectivo,grupo,deudora
+1105,Caja,cuenta,deudora
+1110,Bancos,cuenta,deudora
+1115,Remesas en transito,cuenta,deudora
+1120,Cuentas de ahorro,cuenta,deudora
+1125,Fondos,cuenta,deudora
+1130,Equivalente al efectivo,cuenta,deudora
+12,Instrumentos financieros - Inversiones,grupo,deudora
+1205,Acciones al costo,cuenta,deudora
+1207,Acciones a valor razonable,cuenta,deudora
+1210,Cuotas o partes de interés social al valor razonable,cuenta,deudora
+1212,Cuotas o partes de interés social al costo,cuenta,deudora
+1215,Bonos,cuenta,deudora
+1220,Cédulas,cuenta,deudora
+1225,Certificados,cuenta,deudora
+1230,Papeles comerciales,cuenta,deudora
+1235,Títulos,cuenta,deudora
+1240,Aceptaciones bancarias o financieras,cuenta,deudora
+1245,Derechos fiduciarios,cuenta,deudora
+1250,Derechos de recompra de inversiones negociadas (repos),cuenta,deudora
+1255,Obligatorias,cuenta,deudora
+1260,Cuentas en partcipación,cuenta,deudora
+1294,Deterioro (Activos al costo),cuenta,deudora
+1295,Otras inversiones,cuenta,deudora
+1298,Revaluar (Inversiones al valor razonable),cuenta,deudora
+1299,Provisiones,cuenta,deudora
+13,Instrumentos financieros -Cuentas comerciales por cobrar y otras cuentas por cobrar,grupo,deudora
+1305,Clientes,cuenta,deudora
+1310,Cuentas corrientes comerciales,cuenta,deudora
+1315,Cuentas por cobrar a casa matriz,cuenta,deudora
+1320,Cuentas por cobrar a vinculados económicos,cuenta,deudora
+1323,Cuentas por cobrar a directores,cuenta,deudora
+1330,Anticipos y avances,cuenta,deudora
+1332,Cuentas de operación conjunta,cuenta,deudora
+1335,Dépositos,cuenta,deudora
+1340,Promesas de compra venta,cuenta,deudora
+1345,Ingresos por cobrar,cuenta,deudora
+1350,Retención sobre contratos,cuenta,deudora
+1355,Anticipo de impuestos y contribuciones o saldos a favor,cuenta,deudora
+1360,Reclamaciones,cuenta,deudora
+1365,Cuentas por cobrar a trabajadores,cuenta,deudora
+1370,Préstamos a particulares,cuenta,deudora
+1380,Deudores varios,cuenta,deudora
+1385,Derechos de recompra de cartera negociada,cuenta,deudora
+1390,Deudas de difícil cobro,cuenta,deudora
+1394,Deterioro (Activos al costo),cuenta,deudora
+1396,Costo amortizado,cuenta,deudora
+1399,Provisiones,cuenta,deudora
+14,Inventarios,grupo,deudora
+1405,Materias primas,cuenta,deudora
+1410,Productos en proceso,cuenta,deudora
+1415,Obras de construcción en curso,cuenta,deudora
+1417,Obras de urbanismo,cuenta,deudora
+1420,Contratos en ejeución,cuenta,deudora
+1425,Cultivos en desarrollo,cuenta,deudora
+1428,Plantaciones agrícolas,cuenta,deudora
+1430,Productos terminados,cuenta,deudora
+1435,Mercancías no fabricadas por la empresa,cuenta,deudora
+1440,Bines raíces para la venta,cuenta,deudora
+1445,Semovientes,cuenta,deudora
+1450,Terrenos,cuenta,deudora
+1455,"Materiales, repuestos y accesorios",cuenta,deudora
+1460,Envases y empaques,cuenta,deudora
+1465,Inventarios en tránsito,cuenta,deudora
+1494,Deterioro (Activos al costo),cuenta,deudora
+15,"Propiedades, planta y equipo",grupo,deudora
+1504,Terrenos,cuenta,deudora
+1506,Materiales proyectos petroleros,cuenta,deudora
+1508,Construcciones en curso,cuenta,deudora
+1512,Maquinaria y equipos en montaje,cuenta,deudora
+1516,Construcciones y edificaciones,cuenta,deudora
+1517,Propiedades de inversión al costo,cuenta,deudora
+1518,Propiedades de inversión al valor razonable,cuenta,deudora
+1520,Maquinaria y equipo,cuenta,deudora
+1524,Equipo de oficina,cuenta,deudora
+1528,Equipo de computación y comunicación,cuenta,deudora
+1532,Equipo médico-científico,cuenta,deudora
+1536,Equipo de hoteles y restaurantes,cuenta,deudora
+1540,Flota y equipo de transporte,cuenta,deudora
+1544,Flota y equipo fluvial o marítimo,cuenta,deudora
+1548,Flota y equipo aéreo,cuenta,deudora
+1552,Flota y equipo férreo,cuenta,deudora
+1556,"Acueductos, plantas y redes",cuenta,deudora
+1560,Armamento de vigilancia,cuenta,deudora
+1562,Envases y empaques,cuenta,deudora
+1563,Activos biológicos al valor razonable,cuenta,deudora
+1564,Plantaciones agrícolas y forestales,cuenta,deudora
+1565,Activos biológicos al costo,cuenta,deudora
+1568,Vías de comunicación,cuenta,deudora
+1572,Minas y canteras,cuenta,deudora
+1576,Pozos artesianos,cuenta,deudora
+1580,Yacimientos,cuenta,deudora
+1584,Semovientes diferentes a activos biológicos,cuenta,deudora
+1588,"Propiedades, planta y equipo en tránsito",cuenta,deudora
+1592,Depreciación acumulada,cuenta,deudora
+1593,NIIF Depreciación acumulada (Activos al costo),cuenta,deudora
+1594,Deterioro (Activos al costo),cuenta,deudora
+1596,Depreciación diferida,cuenta,deudora
+1597,Amortización acumulada,cuenta,deudora
+1598,Agotamiento acumulado,cuenta,deudora
+16,Intangibles,grupo,deudora
+1605,Plusvalía,cuenta,deudora
+1610,Marcas,cuenta,deudora
+1615,Patentes,cuenta,deudora
+1620,Concesiones y franquicias,cuenta,deudora
+1625,Derechos,cuenta,deudora
+1630,Know How,cuenta,deudora
+1635,Licencias,cuenta,deudora
+1694,Deterioro (Activos al costo),cuenta,deudora
+1697,NIIF Depreciación y/o amortización acumulada ,cuenta,deudora
+1698,Depreciación o amortización acumulada,cuenta,deudora
+17,Diferidos,grupo,deudora
+1705,Gastos pagados por anticipo,cuenta,deudora
+1710,Cargos diferidos,cuenta,deudora
+1715,Costos de exploración por amortizar,cuenta,deudora
+1720,Costos de explotación y desarrollo,cuenta,deudora
+1794,Deterioro (Activos al costo),cuenta,deudora
+1798,Amortización acumulada,cuenta,deudora
+18,Otros activos,grupo,deudora
+1805,Bienes de arte y cultura,cuenta,deudora
+1815,Otros animales vivos,cuenta,deudora
+1895,Diversos,cuenta,deudora
+1896,NIIF Depreciación (Activos al costo),cuenta,deudora
+1897,Deterioro (Activos al costo),cuenta,deudora
+1898,Revaluar (Activos al valor razonable),cuenta,deudora
+19,Revaluar (Activos medidos al valor razonable),grupo,deudora
+1905,Inversiones,cuenta,deudora
+1910,"Propiedades, planta y equipo",cuenta,deudora
+1995,Otros activos,cuenta,deudora
+2,PASIVO,clase,acreedora
+21,Obligaciones financieras e Instrumentos derivados,grupo,acreedora
+2105,Bancos nacionales,cuenta,acreedora
+2110,Bancos del exterior,cuenta,acreedora
+2115,Corporaciones financieras,cuenta,acreedora
+2120,Compañias de financiamiento comercial ,cuenta,acreedora
+2125,Corporaciones de ahorro y vivienda,cuenta,acreedora
+2130,Entidades financieras del exterior ,cuenta,acreedora
+2135,Compromisos de recompra de inversiones negociadas,cuenta,acreedora
+2140,Compromisos de recompra de cartera negociada,cuenta,acreedora
+2145,Obligaciones gubernamentales,cuenta,acreedora
+2195,Otras obligaciones ,cuenta,acreedora
+2198,Costo amortizado ,cuenta,acreedora
+22,Cuentas comerciales por pagar,grupo,acreedora
+2205,Nacionales,cuenta,acreedora
+2210,Del exterior,cuenta,acreedora
+2215,Cuentas corrientes comerciales,cuenta,acreedora
+2220,Casa matriz ,cuenta,acreedora
+2225,Compañias vinculadas,cuenta,acreedora
+2298,Costo amortizado ,cuenta,acreedora
+23,Cuentas por pagar,grupo,acreedora
+2305,Cuentas corrientes comerciales,cuenta,acreedora
+2310,A casa matriz,cuenta,acreedora
+2315,A compañias vinculadas,cuenta,acreedora
+2320,A contratistas,cuenta,acreedora
+2330,Órdenes de compra por utilizar,cuenta,acreedora
+2333,Titulos de patrimonio que son pasivo ,cuenta,acreedora
+2340,Instalamentos por pagar,cuenta,acreedora
+2345,Acreedores oficiales,cuenta,acreedora
+2350,Regalias por pagar,cuenta,acreedora
+2355,Deudas con accionistas o socios,cuenta,acreedora
+2357,Deudas con directores,cuenta,acreedora
+2360,Dividendos o participaciones por pagar,cuenta,acreedora
+2365,Retención en la fuente,cuenta,acreedora
+2366,CREE retenciones ,cuenta,acreedora
+2367,Impuesto a las ventas retenido ,cuenta,acreedora
+2368,Impuesto de industria y comercio retenido,cuenta,acreedora
+2370,Retenciones y aportes de nómina ,cuenta,acreedora
+2375,Cuotas por devolver,cuenta,acreedora
+2380,Acreedores varios ,cuenta,acreedora
+2398,Costo amortizado ,cuenta,acreedora
+24,"Impuestos, gravámenes y tasas",grupo,acreedora
+2404,De renta y complementarios ,cuenta,acreedora
+2406,De impuesto CREE,cuenta,acreedora
+2407,Impuesto a la riqueza,cuenta,acreedora
+2408,Impuesto sobre las ventas por pagar,cuenta,acreedora
+2412,De industria y comercio ,cuenta,acreedora
+2416,A la propiedad raiz,cuenta,acreedora
+2420,Derechos sobre instrumentos públicos,cuenta,acreedora
+2424,De valorización ,cuenta,acreedora
+2428,De turismo ,cuenta,acreedora
+2436,De vehiculos,cuenta,acreedora
+2440,De espectaculos públicos,cuenta,acreedora
+2444,De hidrocarburos y minas ,cuenta,acreedora
+2448,Regalias e impuestos a la pequeña y mediana minería ,cuenta,acreedora
+2452,A las exportaciones cafeteras,cuenta,acreedora
+2456,A las importaciones ,cuenta,acreedora
+2460,Cuotas de fomento ,cuenta,acreedora
+2464,"De licores, cervezas y cigarrillos",cuenta,acreedora
+2468,Al sacrificio de ganado ,cuenta,acreedora
+2472,Al azar y juegos,cuenta,acreedora
+2476,Gravámenes y regalías por utilización del suelo,cuenta,acreedora
+2495,Otros,cuenta,acreedora
+25,Obligaciones laborales,grupo,acreedora
+2505,Salarios por pagar,cuenta,acreedora
+2510,Cesantías consolidadas,cuenta,acreedora
+2515,Intereses sobre cesantías,cuenta,acreedora
+2520,Prima de servicios,cuenta,acreedora
+2525,Vacaciones consolidadas,cuenta,acreedora
+2530,Prestaciones extralegales,cuenta,acreedora
+2532,Pensiones por pagar,cuenta,acreedora
+2535,Cuotas partes pensiones de jubilación ,cuenta,acreedora
+2540,Indemnizaciones laborales,cuenta,acreedora
+26,Pasivos estimados y provisiones,grupo,acreedora
+2605,Para costos y gastos ,cuenta,acreedora
+2610,Para obligaciones laborales ,cuenta,acreedora
+2615,Para obligaciones fiscales,cuenta,acreedora
+2620,Pensiones de jubilación ,cuenta,acreedora
+2623,Otros beneficios empleados ,cuenta,acreedora
+2624,Por contrattos onerosos,cuenta,acreedora
+2625,Para obra de urbanismo ,cuenta,acreedora
+2626,Por reembolsos,cuenta,acreedora
+2630,Para mantenimiento y reparaciones ,cuenta,acreedora
+2635,Para contingencias ,cuenta,acreedora
+2640,Para obligaciones de garantías,cuenta,acreedora
+2695,Provisiones diversas,cuenta,acreedora
+27,Diferidos,grupo,acreedora
+2705,Ingresos recibidos por anticipado,cuenta,acreedora
+2710,Abonos diferidos,cuenta,acreedora
+2715,Utlidad diferida en ventas a plazos,cuenta,acreedora
+2720,Crédito por corrección monetaria diferida,cuenta,acreedora
+2725,Impuestos diferidos,cuenta,acreedora
+28,Otros pasivos,grupo,acreedora
+2805,Anticipos y avances recbidos ,cuenta,acreedora
+2810,Depósitos recibidos,cuenta,acreedora
+2815,Ingresos recibidos para terceros,cuenta,acreedora
+2820,Cuentas de operación conjunta,cuenta,acreedora
+2825,Retenciones a terceros sobre contratos,cuenta,acreedora
+2830,Embargos judiciales,cuenta,acreedora
+2835,Acreedores del sistema,cuenta,acreedora
+2840,Cuentas en participación ,cuenta,acreedora
+2895,Diversos,cuenta,acreedora
+29,Bonos y papeles comerciales,grupo,acreedora
+2905,Bonos en circulación ,cuenta,acreedora
+2910,Bonos obligatoriamente convertibles en acciones,cuenta,acreedora
+2915,Papeles comerciales,cuenta,acreedora
+2920,Bonos pensionales,cuenta,acreedora
+2925,Titulos pensionales ,cuenta,acreedora
+3,PATRIMONIO,clase,acreedora
+31,Capital social,grupo,acreedora
+3105,Capital suscrito y pagado (sociedades de capital o por acciones),cuenta,acreedora
+3115,Aportes Sociales - (sociedades por personas),cuenta,acreedora
+3120,Capital asignado ,cuenta,acreedora
+3125,Inversión suplementaria al capital asignado ,cuenta,acreedora
+3130,Capital de personas naturales ,cuenta,acreedora
+3135,Aportes del Estado ,cuenta,acreedora
+3140,Fondo social ,cuenta,acreedora
+32,Siperávit de capital,grupo,acreedora
+3205,"Prima en colocación de acciones, cuotas o partes de interés social ",cuenta,acreedora
+3210,Donaciones,cuenta,acreedora
+3215,Plusvalía ,cuenta,acreedora
+3220,Know How ,cuenta,acreedora
+3225,Superávit método  de participación ,cuenta,acreedora
+33,Reservas,grupo,acreedora
+3305,Reservas obligatorias,cuenta,acreedora
+3310,Reservas estatutarias,cuenta,acreedora
+3315,Reservas ocasionales,cuenta,acreedora
+34,Revalorización del patrimonio ,grupo,acreedora
+3410,Saneamiento fiscal ,cuenta,acreedora
+35,"Dividendos o participaciones decretados en acciones, cuotas o partes de interés social ",grupo,acreedora
+3305,Dividendos decretados en acciones,cuenta,acreedora
+3510,participaciones decretadas en cuotas o partes de intéres social ,cuenta,acreedora
+36,Resultados del ejercicio ,grupo,acreedora
+3605,Utilidad del ejercicio ,cuenta,acreedora
+3610,Pérdida del ejercicio ,cuenta,acreedora
+37,Resultados de ejercicios anteriores ,grupo,acreedora
+3705,Utilidades acumuladas ,cuenta,acreedora
+3710,Pérdidas acumuladas ,cuenta,acreedora
+38,Otras participaciones en el patrimonio ,grupo,acreedora
+3899,Otros resultado integral,cuenta,acreedora
+4,"Utilizando el método de la participación, neto de impuestos ",clase,acreedora
+41,Ingresos por actividades ordinarias ,grupo,acreedora
+4105,Objeto social principal ,cuenta,acreedora
+4110,Objeto social secundario ,cuenta,acreedora
+4120,Industrias manufactureras,cuenta,acreedora
+4135,Comercio al por mayor y menor,cuenta,acreedora
+4175,Devolucion en ventas (DB),cuenta,acreedora
+42,No operacionales,grupo,acreedora
+4205,Otras ventas ,cuenta,acreedora
+4210,Financieros ,cuenta,acreedora
+4215,Dividendos y participaciones,cuenta,acreedora
+4218,Ingresos método de participación ,cuenta,acreedora
+4220,Arrendamientos,cuenta,acreedora
+4225,Comisiones ,cuenta,acreedora
+4230,Honorarios,cuenta,acreedora
+4235,servicios,cuenta,acreedora
+4240,Utilidad en venta de inversiones,cuenta,acreedora
+4245,"Utilidad en venta de propiedades, planta y equipo ",cuenta,acreedora
+4248,Utilidad en venta de otros bienes,cuenta,acreedora
+4250,Recuperaciones,cuenta,acreedora
+4255,Indemnizaciones,cuenta,acreedora
+4260,Participaciones en concesiones,cuenta,acreedora
+4265,Ingresos de ejercicios anteriores,cuenta,acreedora
+4275,Devoluciones en otras ventas (DB),cuenta,acreedora
+4295,Diversos,cuenta,acreedora
+43,INGRESOS FINANCIEROS,grupo,acreedora
+4305,Costo amortizado,cuenta,acreedora
+4310,NIIF Ingresos por revalución (Medidos al valor razonable),cuenta,acreedora
+47,Reajuste fiscal **,grupo,acreedora
+4705,Reajuste fiscal,cuenta,acreedora
+5,Gastos,clase,deudora
+51,Operacionales de administración ,grupo,deudora
+5105,Gastos de personal,cuenta,deudora
+5110,Honorarios,cuenta,deudora
+5115,Impuestos,cuenta,deudora
+5120,Arrendamientos,cuenta,deudora
+5125,Contribuciones y afiliaciones ,cuenta,deudora
+5130,Seguros,cuenta,deudora
+5135,Servicios,cuenta,deudora
+5140,Gastos legales,cuenta,deudora
+5145,Mantenimiento y reparaciones,cuenta,deudora
+5150,Adecuación e instalación ,cuenta,deudora
+5155,Gastos de viaje,cuenta,deudora
+5160,Depreciaciones (Activos al costo),cuenta,deudora
+5162,NIIF Depreciación (Activos al costo),cuenta,deudora
+5164,NIIF Amortización (Activos al costo),cuenta,deudora
+5165,Amortizaciones,cuenta,deudora
+5194,Deterioro (Activos al costo),cuenta,deudora
+5195,Diversos,cuenta,deudora
+5198,NIIF Revaluación po desvalorización (Medidas al valor razonable),cuenta,deudora
+5199,Provisiones,cuenta,deudora
+52,Operacionales de ventas,grupo,deudora
+5205,Gastos de personal,cuenta,deudora
+5210,Honorarios,cuenta,deudora
+5215,Impuestos,cuenta,deudora
+5220,Arrendamientos,cuenta,deudora
+5225,Contribuciones y afiliaciones,cuenta,deudora
+5230,Seguros ,cuenta,deudora
+5235,Sevicios,cuenta,deudora
+5240,Gastos legales,cuenta,deudora
+5245,Mantenimiento y reparaciones,cuenta,deudora
+5250,Adecuación e instalación ,cuenta,deudora
+5255,Gastos de viaje,cuenta,deudora
+5260,Depreciaciones (Activos al costo),cuenta,deudora
+5262,NIIF Depreciación (Activos al costo),cuenta,deudora
+5264,NIIF Amortización (Activos al costo),cuenta,deudora
+5265,Amortizaciones,cuenta,deudora
+5270,Financieros-reajuste al sistema,cuenta,deudora
+5275,Pérdidas método de participación,cuenta,deudora
+5294,Deterioro (Activos al costo),cuenta,deudora
+5295,Diversos,cuenta,deudora
+5298,NIIF Revaluación po desvalorización (Activos al valor razonable),cuenta,deudora
+5299,Provisiones,cuenta,deudora
+53,No operacionales,grupo,deudora
+5305,Financieros,cuenta,deudora
+5310,Pérdida en venta y retiro de bienes,cuenta,deudora
+5313,Pérdidas método de participación,cuenta,deudora
+5315,Gastos extraordinarios,cuenta,deudora
+5395,Gastos diversos,cuenta,deudora
+54,Impuesto de renta y complementarios,grupo,deudora
+5405,Impuesto de renta y complementarios,cuenta,deudora
+5406,Impuesto de CREE,cuenta,deudora
+59,Ganancias y pérdidas,grupo,deudora
+5905,Ganancias y pérdidas,cuenta,deudora
+6,Gastos por costo de ventas*,clase,deudora
+61,Costo de ventas y prestacion de servicios,grupo,deudora
+6105,Objeto social principal,cuenta,deudora
+6110,Objeto social secundario,cuenta,deudora
+6120,Indrustria manufacturera,cuenta,deudora
+62,Compras,grupo,deudora
+6205,De mercancias,cuenta,deudora
+6210,De materias primas,cuenta,deudora
+6215,De materiales indirectos,cuenta,deudora
+6220,Compra de energia,cuenta,deudora
+6225,Devolucion en compras,cuenta,deudora
+7,Costos de producción o de operación ,clase,deudora
+71,Materia prima,grupo,deudora
+72,Mano de obra directa,grupo,deudora
+73,Costos indirectos de fabricacion,grupo,deudora
+74,Contratos de servicios ,grupo,deudora
+8,CUENTAS DE ORDEN DEUDORAS,clase,deudora
+81,DERECHOS CONTINGENTES,grupo,deudora
+8105,BIENES Y VALORES ENTREGADOS EN CUSTODIA,cuenta,deudora
+8110,Bienes y valores entregados en garantia,cuenta,deudora
+8115,Bienes y valores en poder de terceros,cuenta,deudora
+8118,Activos con propiedad sin control ,cuenta,deudora
+8120,Litigios y/o demandas,cuenta,deudora
+8125,Promesas de compraventa,cuenta,deudora
+8130,Compromisos contractuales para la adquisición de activos,cuenta,deudora
+8135,Compromisos contractuales para la dación de pasivos,cuenta,deudora
+8140,Cuentas por cobrar a asociados por capitalización ,cuenta,deudora
+8195,Diversas,cuenta,deudora
+82,Deudoras fiscales,grupo,deudora
+83,Deudoras de control,grupo,deudora
+8305,Bienes recibidos en errendamiento financiero,cuenta,deudora
+8310,Título de inversión no colocados,cuenta,deudora
+8315,Intangibles formados,cuenta,deudora
+8320,Créditos a favor no utilizados,cuenta,deudora
+8325,Activos castigados,cuenta,deudora
+8330,Títulos de inversión amortizados,cuenta,deudora
+8335,Capitalización por revalorización de patrimonio,cuenta,deudora
+8395,Otras cuentas deudoras de control,cuenta,deudora
+84,Derechos contingentes por el contrario (CR),grupo,deudora
+85,Deudores fiscales por el contrario (CR),grupo,deudora
+86,Deudores de control por el contrario (CR),grupo,deudora
+9,CUENTAS DE ORDEN ACREEDORAS,clase,deudora
+91,Responsabilidades contingentes,grupo,deudora
+9105,Bienes y valores recibidos en custodia,cuenta,deudora
+9110,Bienes y valores recibidos en garantía,cuenta,deudora
+9115,Birnes y valores recibidos de terceros ,cuenta,deudora
+9120,Litigios y/o demandas,cuenta,deudora
+9123,Activos reconocidos en balance sin propiedad,cuenta,deudora
+9125,Promesas de compraventa,cuenta,deudora
+9130,Contratos de administración delegada,cuenta,deudora
+9140,Compromisos contractuales para la dación de activos,cuenta,deudora
+9145,Compromisos contractuales para la adquisición de pasivos,cuenta,deudora
+9195,Otras responsabilidades contingentes,cuenta,deudora
+92,Acreedorass fiscales,grupo,deudora
+93,Acreedores de control,grupo,deudora
+9305,Contratos de arrendamiento financiero ,cuenta,deudora
+9395,Otras cuentas de orden acreedoras de contral,cuenta,deudora

@@ -22,6 +22,8 @@ class CreateCuentasContablesTable extends Migration
             $table->enum('naturaleza', ['acreedora', 'deudora']);
             $table->unsignedBigInteger('padre_id')->nullable();
             $table->foreign('padre_id')->references('id')->on('cuentas_contables');
+            $table->unsignedBigInteger('empresa_serial')->nullable();
+            $table->foreign('empresa_serial')->references('serial')->on('empresas')->cascadeOnDelete();
             $table->timestamps();
         });
     }

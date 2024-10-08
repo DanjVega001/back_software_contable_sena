@@ -109,7 +109,7 @@ class EmpresaService
         try {
             $empresa = Empresa::where('serial', $serial)->first();
 
-            if (!$this->deleteLogoFromStorage($serial)) {
+            if (!$this->deleteLogoFromStorage($serial, $empresa->logo)) {
                 response()->json([
                     'errors' => 'Hubo un error al eliminar la empresa.'
                 ], 500);
@@ -218,13 +218,15 @@ class EmpresaService
     private function saveLogoToStorage(UploadedFile $reqFile, int $serial): string
     {
         $path = 'public/logos';
-        $ruta = $reqFile->storeAs($path, $serial);
+        $extension = $reqFile->getClientOriginalExtension();
+        $ruta = $reqFile->storeAs($path, $serial .  '.' . $extension);
         return Storage::url($ruta);
     }
 
-    private function deleteLogoFromStorage(string $serial): bool
+    private function deleteLogoFromStorage(string $serial, string $ruta): bool
     {
-        return Storage::delete('public/logos/' . $serial);
+        $rutaArr = explode('.', $ruta);
+        return Storage::delete('public/logos/' . $serial . '.' . $rutaArr[count($rutaArr) -1]);
     }
 
     private function generateSerialCompany(): int

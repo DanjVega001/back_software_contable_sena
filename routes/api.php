@@ -23,12 +23,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Csv;
 */
 
 
-Route::get('test', function () {
-    return response()->json(\App\Modules\Accounting\Models\CuentaContable::with('descendants')
-        ->where('nivel', '=', \App\Modules\Accounting\Utils\Constants\AccountConstants::classAccName)->get());
-});
-
-
 Route::post('login', [AuthController::class, "login"]);
 
 // Trae todas las ciudades

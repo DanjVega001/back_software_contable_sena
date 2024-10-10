@@ -11,6 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * App\Modules\Accounting\Models\CuentaContable
  *
+ * @property int $codigo
+ * @property string $nombre
+ * @property string|null $descripcion
+ * @property string $nivel
+ * @property string $naturaleza
+ * @property int|null $padre_id
+ * @property int|null $empresa_serial
  * @property-read \Illuminate\Database\Eloquent\Collection<int, CuentaContable> $childrens
  * @property-read int|null $childrens_count
  * @property-read CuentaContable|null $parent
@@ -37,17 +44,11 @@ class CuentaContable extends Model
         return $this->hasMany(CuentaContable::class, 'padre_id');
     }
 
-    public function descendants($empresa_serial): HasMany
+    public function descendants(): HasMany
     {
-        if ($this->nivel == AccountConstants::classAccName || $this->nivel == AccountConstants::groupAccName
-            || $this->nivel == AccountConstants::accountAccName)
-        {
-            return $this->childrens()->with('descendants');
-        }
-        else {
-            return $this->childrens()->with('descendants')->where('empresa_serial',
-                '=', $empresa_serial);
-        }
+        return $this->childrens()->with('descendants')->where(function ($query) {
+            $query->where('empresa_serial', '=', null)->orWhere('empresa_serial', '=', request()->route('empresa_serial'));
+        });
     }
 
 }

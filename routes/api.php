@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Accounting\Utils\Constants\AccountConstants;
 use App\Modules\Auth\Http\Controllers\AuthController;
 use App\Modules\Settings\Company\Http\Controllers\ActividadEconomicaController;
 use App\Modules\Settings\Company\Http\Controllers\EmpresaController;
@@ -9,7 +10,7 @@ use App\Modules\Shared\Http\Controllers\CiudadController;
 use App\Modules\Shared\Http\Controllers\RespFiscalController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use PhpOffice\PhpSpreadsheet\Reader\Csv;
+use App\Modules\Accounting\Http\Controllers\CuentaContableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Csv;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 
 Route::post('login', [AuthController::class, "login"]);
 
@@ -106,6 +106,9 @@ Route::middleware('auth:api')->group(function () {
 
         // Trae un tercero de mi empresa
         Route::get('third/{serial}/{tercero_id}', [\App\Modules\Settings\Third\Http\Controllers\TerceroController::class, "getThird"]);
+
+        // Construye el PUC
+        Route::get('puc/{empresa_serial}', [CuentaContableController::class, 'buildPuc']);
 
     });
 });

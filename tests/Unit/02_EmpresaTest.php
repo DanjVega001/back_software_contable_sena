@@ -16,7 +16,7 @@ class EmpresaTest extends TestCase
     {
         return [
             'Authorization' => 'Bearer ' . LoginTest::$token,
-            'Content-Type' => 'multipart/form-data',
+            'Content-Type' => 'application/json',
             'Accept' => 'application/json'
         ];
     }
@@ -52,7 +52,7 @@ class EmpresaTest extends TestCase
             ],
             'datos_empresa' => [
                 'tipo_regimen_iva' => 'No responable IVA',
-                'correo_contacto' => 'admin@example.com',
+                'correo_contacto' => 'sadmin@example.com',
                 'nombre_contacto' => 'Administrador',
                 'es_consorcio' => false,
                 'cobrador_id' => 1,
@@ -93,9 +93,6 @@ class EmpresaTest extends TestCase
      *
      * @return void
      */
-
-
-
     public function test_create_company()
     {
         $response = $this->postJson('/api/company', $this->getData(), $this->headers());

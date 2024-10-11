@@ -110,5 +110,8 @@ Route::middleware('auth:api')->group(function () {
         // Construye el PUC
         Route::get('puc/{empresa_serial}', [CuentaContableController::class, 'buildPuc']);
 
+        // Crea una cuenta contable
+        Route::post('create-account', [\App\Modules\Accounting\Http\Controllers\CuentaContableController::class, "createAccount"]);
+
     });
 });

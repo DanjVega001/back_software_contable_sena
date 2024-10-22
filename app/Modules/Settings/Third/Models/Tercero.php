@@ -49,9 +49,9 @@ class Tercero extends Model
         'empresa_serial',
     ];
 
-    public function datosBasicos() : BelongsTo
+    public function datosBasicos() : HasOne
     {
-        return $this->belongsTo(DatoBasico::class, 'tercero_id', 'id');
+        return $this->hasOne(DatoBasico::class, 'tercero_id', 'id');
     }
 
     public function contactos() : HasMany

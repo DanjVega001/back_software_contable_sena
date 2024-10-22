@@ -38,10 +38,12 @@ class TerceroService
 
             $this->datosBasicosRepository->saveBasicData($data['datos_basicos']);
             $this->datosFacturacionRepository->saveBillingData($data['datos_facturacion']);
-            foreach ($data['contacto'] as $contact)
-            {
-                $contact['tercero_id'] = $tercero_id;
-                $this->contactoRepository->saveContact($contact);
+            if($data['contacto']){
+                foreach ($data['contacto'] as $contact)
+                {
+                    $contact['tercero_id'] = $tercero_id;
+                    $this->contactoRepository->saveContact($contact);
+                }
             }
 
             DB::commit();
@@ -69,14 +71,16 @@ class TerceroService
 
             $this->datosBasicosRepository->updateBasicData($this->datosBasicosRepository->findByTercero($tercero_id), $data['datos_basicos']);
             $this->datosFacturacionRepository->updateBillingData($tercero->datosFacturacion, $data['datos_facturacion']);
-            foreach ($data['contacto'] as $contact)
-            {
-                if (isset($contact['id'])) {
-                    $contacto = $this->contactoRepository->find($contact['id']);
-                    $this->contactoRepository->updateContact($contacto, $contact);
-                } else {
-                    $contact['tercero_id'] = $tercero_id;
-                    $this->contactoRepository->saveContact($contact);
+            if($data['contacto']){
+                foreach ($data['contacto'] as $contact)
+                {
+                    if (isset($contact['id'])) {
+                        $contacto = $this->contactoRepository->find($contact['id']);
+                        $this->contactoRepository->updateContact($contacto, $contact);
+                    } else {
+                        $contact['tercero_id'] = $tercero_id;
+                        $this->contactoRepository->saveContact($contact);
+                    }
                 }
             }
 
